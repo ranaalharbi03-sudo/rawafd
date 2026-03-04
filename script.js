@@ -166,4 +166,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  /* ---------- Order Modal ---------- */
+  const orderModal = document.getElementById('orderModal');
+  const modalClose = document.getElementById('modalClose');
+  const orderForm = document.getElementById('orderForm');
+  const orderProduct = document.getElementById('orderProduct');
+  const qtyInput = document.getElementById('orderQty');
+  const qtyMinus = document.getElementById('qtyMinus');
+  const qtyPlus = document.getElementById('qtyPlus');
+
+  // Open modal
+  window.openOrder = function (productName) {
+    if (orderModal) {
+      orderModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      if (orderProduct && productName) {
+        for (let opt of orderProduct.options) {
+          if (opt.value === productName) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
+    }
+  };
+
+  // Close modal
+  function closeModal() {
+    if (orderModal) {
+      orderModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (orderModal) {
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) closeModal();
+    });
+  }
+
+  // Quantity controls
+  if (qtyMinus && qtyInput) {
+    qtyMinus.addEventListener('click', () => {
+      const val = parseInt(qtyInput.value) || 1;
+      if (val > 1) qtyInput.value = val - 1;
+    });
+  }
+  if (qtyPlus && qtyInput) {
+    qtyPlus.addEventListener('click', () => {
+      const val = parseInt(qtyInput.value) || 1;
+      if (val < 100) qtyInput.value = val + 1;
+    });
+  }
+
+  // Form submit - send via WhatsApp
+  if (orderForm) {
+    orderForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const product = document.getElementById('orderProduct').value;
+      const brand = document.getElementById('orderBrand').value;
+      const qty = document.getElementById('orderQty').value;
+      const name = document.getElementById('orderName').value;
+      const phone = document.getElementById('orderPhone').value;
+      const address = document.getElementById('orderAddress').value;
+      const payment = document.querySelector('input[name="payment"]:checked').value;
+      const notes = document.getElementById('orderNotes').value;
+
+      let msg = `\u0637\u0644\u0628 \u062c\u062f\u064a\u062f \u0645\u0646 \u0631\u0648\u0627\u0641\u062f \u0627\u0644\u0623\u0646\u0647\u0627\u0631\n`;
+      msg += `\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n`;
+      msg += `\u0627\u0644\u0645\u0646\u062a\u062c: ${product}\n`;
+      msg += `\u0627\u0644\u0645\u0627\u0631\u0643\u0629: ${brand}\n`;
+      msg += `\u0627\u0644\u0643\u0645\u064a\u0629: ${qty}\n`;
+      msg += `\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n`;
+      msg += `\u0627\u0644\u0627\u0633\u0645: ${name}\n`;
+      msg += `\u0627\u0644\u062c\u0648\u0627\u0644: ${phone}\n`;
+      msg += `\u0627\u0644\u0639\u0646\u0648\u0627\u0646: ${address}\n`;
+      msg += `\u0637\u0631\u064a\u0642\u0629 \u0627\u0644\u062f\u0641\u0639: ${payment}\n`;
+      if (notes) msg += `\u0645\u0644\u0627\u062d\u0638\u0627\u062a: ${notes}\n`;
+
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/966506939956?text=${encoded}`, '_blank');
+
+      closeModal();
+      orderForm.reset();
+    });
+  }
+
 });
