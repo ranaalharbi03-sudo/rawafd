@@ -1565,6 +1565,143 @@ button {
 }
 
 /* ========================================
+   PRODUCT DETAIL PAGES
+   ======================================== */
+.page-hero {
+  padding: 120px 0 var(--space-lg);
+  background: linear-gradient(135deg, #e8f4fd 0%, #f0f7fb 50%, #fafcfe 100%);
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: var(--space-xs);
+}
+
+.page-hero-sub {
+  font-family: var(--ff-body);
+  font-size: 1rem;
+  color: var(--clr-text-light);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-size: .85rem;
+  color: var(--clr-gold);
+  text-decoration: none;
+  margin-bottom: var(--space-sm);
+  transition: opacity var(--dur) var(--ease);
+}
+
+.back-link:hover {
+  opacity: .7;
+}
+
+.brands-catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.packages-layout {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.brand-card {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 119, 204, 0.08);
+  overflow: hidden;
+  transition: all var(--dur) var(--ease);
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 119, 204, 0.1);
+  border-color: var(--clr-gold);
+}
+
+.brand-card-header {
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.brand-card-header h2 {
+  font-family: var(--ff-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin: 0;
+}
+
+.brand-badge {
+  font-family: var(--ff-body);
+  font-size: .7rem;
+  font-weight: 600;
+  padding: .2rem .6rem;
+  border-radius: 20px;
+  background: var(--clr-gold);
+  color: white;
+}
+
+.brand-badge.best {
+  background: linear-gradient(135deg, #d4a012, #f0c040);
+}
+
+.brand-card-body {
+  padding: var(--space-sm) var(--space-md);
+  flex: 1;
+}
+
+.brand-card .btn-order {
+  margin: 0 var(--space-md) var(--space-md);
+}
+
+.highlight-card {
+  border: 2px solid var(--clr-gold);
+  box-shadow: 0 4px 20px rgba(0, 119, 204, 0.08);
+}
+
+.package-description {
+  font-family: var(--ff-body);
+  font-size: .85rem;
+  color: var(--clr-text-light);
+  margin-bottom: var(--space-sm);
+  line-height: 1.7;
+}
+
+a.collection-item {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+a.collection-item:hover {
+  transform: translateY(-6px);
+}
+
+@media (max-width: 768px) {
+  .brands-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero {
+    padding: 100px 0 var(--space-md);
+  }
+}
+
+/* ========================================
    PRODUCT DETAIL MODALS
    ======================================== */
 .product-modal-overlay {

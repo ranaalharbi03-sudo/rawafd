@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قوارير مياه كبيرة - روافد الأنهار</title>
+    <meta name="description"
+        content="قوارير مياه 5 جالون للمبردات المنزلية والمكتبية مع خدمة التوصيل والاستبدال. أسعار منافسة من روافد الأنهار.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ====== HEADER ====== -->
+    <header class="site-header" id="header">
+        <div class="container header-inner">
+            <div class="logo"><a href="index.html">روافد الأنهار</a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#collection">المنتجات</a></li>
+                    <li><a href="index.html#wellness">ميزاتنا</a></li>
+                    <li><a href="index.html#process">آلية الطلب</a></li>
+                    <li><a href="index.html#charity">نتبرع لأجلكم</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://wa.me/966506939956" class="btn-outline" target="_blank" rel="noopener">استفسار</a>
+                <button class="mobile-menu-toggle"
+                    aria-label="Toggle menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== PAGE HERO ====== -->
+    <section class="page-hero">
+        <div class="container">
+            <a href="index.html" class="back-link">→ الرجوع للرئيسية</a>
+            <h1>قوارير مياه كبيرة</h1>
+            <p class="page-hero-sub">قوارير 5 جالون للمبردات المنزلية والمكتبية مع خدمة الاستبدال المجانية</p>
+        </div>
+    </section>
+
+    <!-- ====== JUGS LIST ====== -->
+    <section class="product-page section-padding">
+        <div class="container">
+            <div class="brands-catalog">
+
+                <!-- نوفا -->
+                <div class="brand-card reveal">
+                    <div class="brand-card-header">
+                        <h2>نوفا</h2>
+                    </div>
+                    <div class="brand-card-body">
+                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">8 ر.س</span></div>
+                        <div class="size-row"><span>استبدال القارورة الفارغة</span><span
+                                class="size-price">مجاناً</span></div>
+                        <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
+                    </div>
+                    <button class="btn-order" onclick="openOrder('قوارير نوفا')">اطلب الآن</button>
+                </div>
+
+                <!-- القصيم -->
+                <div class="brand-card reveal">
+                    <div class="brand-card-header">
+                        <h2>القصيم</h2>
+                    </div>
+                    <div class="brand-card-body">
+                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">7 ر.س</span></div>
+                        <div class="size-row"><span>استبدال القارورة الفارغة</span><span
+                                class="size-price">مجاناً</span></div>
+                        <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
+                    </div>
+                    <button class="btn-order" onclick="openOrder('قوارير القصيم')">اطلب الآن</button>
+                </div>
+
+                <!-- هنا -->
+                <div class="brand-card reveal">
+                    <div class="brand-card-header">
+                        <h2>هنا</h2>
+                    </div>
+                    <div class="brand-card-body">
+                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">7 ر.س</span></div>
+                        <div class="size-row"><span>استبدال القارورة الفارغة</span><span
+                                class="size-price">مجاناً</span></div>
+                        <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
+                    </div>
+                    <button class="btn-order" onclick="openOrder('قوارير هنا')">اطلب الآن</button>
+                </div>
+
+                <!-- تانيا -->
+                <div class="brand-card reveal">
+                    <div class="brand-card-header">
+                        <h2>تانيا</h2>
+                    </div>
+                    <div class="brand-card-body">
+                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">8 ر.س</span></div>
+                        <div class="size-row"><span>استبدال القارورة الفارغة</span><span
+                                class="size-price">مجاناً</span></div>
+                        <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
+                    </div>
+                    <button class="btn-order" onclick="openOrder('قوارير تانيا')">اطلب الآن</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ORDER MODAL ====== -->
+    <div class="order-modal-overlay" id="orderModal">
+        <div class="order-modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2>اطلب الآن</h2>
+            <p class="modal-subtitle">عبّي البيانات وبنتواصل معك</p>
+            <form id="orderForm">
+                <div class="form-group"><label>المنتج</label><select id="orderProduct" required>
+                        <option value="">اختر المنتج</option>
+                        <option value="قوارير نوفا">قوارير نوفا</option>
+                        <option value="قوارير القصيم">قوارير القصيم</option>
+                        <option value="قوارير هنا">قوارير هنا</option>
+                        <option value="قوارير تانيا">قوارير تانيا</option>
+                    </select></div>
+                <div class="form-group"><label>الكمية</label>
+                    <div class="qty-control"><button type="button" class="qty-btn" id="qtyMinus">-</button><input
+                            type="number" id="orderQty" value="1" min="1" max="100"><button type="button"
+                            class="qty-btn" id="qtyPlus">+</button></div>
+                </div>
+                <div class="form-group"><label>الاسم</label><input type="text" id="orderName" placeholder="اسمك الكريم"
+                        required></div>
+                <div class="form-group"><label>رقم الجوال</label><input type="tel" id="orderPhone"
+                        placeholder="05XXXXXXXX" required dir="ltr"></div>
+                <div class="form-group"><label>العنوان</label><input type="text" id="orderAddress"
+                        placeholder="الحي، الشارع، رقم المنزل" required></div>
+                <div class="form-group"><label>طريقة الدفع</label>
+                    <div class="payment-methods">
+                        <label class="payment-option"><input type="radio" name="payment" value="كاش عند الاستلام"
+                                checked><span class="payment-label">كاش</span></label>
+                        <label class="payment-option"><input type="radio" name="payment" value="مدى"><span
+                                class="payment-label">مدى</span></label>
+                        <label class="payment-option"><input type="radio" name="payment" value="Apple Pay"><span
+                                class="payment-label">Apple Pay</span></label>
+                        <label class="payment-option"><input type="radio" name="payment" value="تحويل بنكي"><span
+                                class="payment-label">تحويل</span></label>
+                    </div>
+                </div>
+                <div class="form-group"><label>ملاحظات (اختياري)</label><textarea id="orderNotes"
+                        placeholder="أي تفاصيل إضافية..." rows="2"></textarea></div>
+                <button type="submit" class="btn-submit-order">تأكيد الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
