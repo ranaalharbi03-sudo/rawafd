@@ -166,33 +166,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  /* ---------- Expandable Product Cards ---------- */
-  window.toggleDetails = function (detailsId) {
-    const details = document.getElementById(detailsId);
-    if (!details) return;
-
-    // Close all other open details
-    document.querySelectorAll('.card-details.active').forEach(d => {
-      if (d.id !== detailsId) {
-        d.classList.remove('active');
-        // Remove expanded class from parent card
-        const prevCard = d.previousElementSibling;
-        if (prevCard) prevCard.classList.remove('expanded');
-      }
-    });
-
-    // Toggle this one
-    const isOpen = details.classList.toggle('active');
-    const card = details.previousElementSibling;
-    if (card) card.classList.toggle('expanded', isOpen);
-
-    // Scroll into view
-    if (isOpen) {
-      setTimeout(() => {
-        details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
+  /* ---------- Product Detail Modals ---------- */
+  window.openProductModal = function (modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
   };
+
+  window.closeProductModal = function (modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  // Close product modal on overlay click
+  document.querySelectorAll('.product-modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
 
   /* ---------- Order Modal ---------- */
   const orderModal = document.getElementById('orderModal');
