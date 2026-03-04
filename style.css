@@ -1352,8 +1352,33 @@ button {
     display: none;
   }
 
-  .main-nav {
+  .main-nav ul {
     display: none;
+  }
+
+  .main-nav ul.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: var(--space-md);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .1);
+    gap: var(--space-sm);
+    z-index: 100;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  .main-nav ul.open a {
+    color: var(--clr-text) !important;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: 0;
+    padding: var(--space-xs) 0;
   }
 
   .header-cta-desktop {
