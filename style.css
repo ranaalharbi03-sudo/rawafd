@@ -1345,6 +1345,44 @@ button {
 }
 
 /* ========================================
+   PRODUCT SIZES
+   ======================================== */
+.product-sizes {
+  margin: var(--space-sm) 0;
+}
+
+.size-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: var(--ff-body);
+  font-size: .85rem;
+  color: var(--clr-text-light);
+}
+
+.size-row:last-child {
+  border-bottom: none;
+}
+
+.size-price {
+  font-weight: 600;
+  color: var(--clr-gold);
+  font-size: .85rem;
+}
+
+.sub-intro {
+  font-family: var(--ff-body);
+  font-size: .95rem;
+  color: var(--clr-text-light);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.8;
+}
+
+/* ========================================
    WATER BRANDS
    ======================================== */
 .brands {
