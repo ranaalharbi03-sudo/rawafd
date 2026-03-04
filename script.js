@@ -226,8 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const product = document.getElementById('orderProduct').value;
-      const sizeEl = document.getElementById('orderSize');
-      const size = sizeEl ? sizeEl.value : '';
+      const brand = document.getElementById('orderBrand').value;
       const qty = document.getElementById('orderQty').value;
       const name = document.getElementById('orderName').value;
       const phone = document.getElementById('orderPhone').value;
@@ -235,10 +234,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const payment = document.querySelector('input[name="payment"]:checked').value;
       const notes = document.getElementById('orderNotes').value;
 
-      let msg = `\u0637\u0644\u0628 \u062c\u062f\u064a\u062d \u0645\u0646 \u0631\u0648\u0627\u0641\u062f \u0627\u0644\u0623\u0646\u0647\u0627\u0631\n`;
+      let msg = `\u0637\u0644\u0628 \u062c\u062f\u064a\u062f \u0645\u0646 \u0631\u0648\u0627\u0641\u062f \u0627\u0644\u0623\u0646\u0647\u0627\u0631\n`;
       msg += `\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n`;
       msg += `\u0627\u0644\u0645\u0646\u062a\u062c: ${product}\n`;
-      if (size) msg += `\u0627\u0644\u062d\u062c\u0645: ${size}\n`;
+      msg += `\u0627\u0644\u0645\u0627\u0631\u0643\u0629: ${brand}\n`;
       msg += `\u0627\u0644\u0643\u0645\u064a\u0629: ${qty}\n`;
       msg += `\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n`;
       msg += `\u0627\u0644\u0627\u0633\u0645: ${name}\n`;

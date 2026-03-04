@@ -23,7 +23,7 @@
       <nav class="main-nav">
         <ul>
           <li><a href="#collection">المنتجات</a></li>
-          <li><a href="#subscriptions">الباقات</a></li>
+          <li><a href="#wellness">ميزاتنا</a></li>
           <li><a href="#process">آلية الطلب</a></li>
           <li><a href="#charity">نتبرع لأجلكم</a></li>
         </ul>
@@ -63,7 +63,7 @@
     </div>
   </section>
 
-  <!-- ====== PRODUCTS CATALOG ====== -->
+  <!-- ====== COLLECTION ====== -->
   <section class="collection section-padding reveal" id="collection">
     <div class="container">
       <p class="section-label">منتجاتنا</p>
@@ -71,112 +71,80 @@
       <div class="gold-line"></div>
 
       <div class="collection-grid">
-        <!-- أروى -->
+        <!-- Product 1 -->
         <div class="collection-item reveal">
-          <span class="collection-tag">الأكثر طلباً</span>
-          <h3>أروى</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">15 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">18 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">20 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">22 ر.س / كرتون</span></div>
+          <span class="collection-tag">تشكيلة واسعة</span>
+          <div class="collection-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 3h4v2h-4z" />
+              <path d="M10 5v2" />
+              <path d="M14 5v2" />
+              <path d="M10 7l-2 2v10a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V9l-2-2" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+              <line x1="8" y1="16" x2="16" y2="16" />
+            </svg>
           </div>
-          <button class="btn-order" onclick="openOrder('أروى')">اطلب الآن</button>
+          <h3>مياه معبأة بجميع الأحجام</h3>
+          <p>نوفر جميع العلامات التجارية المفضلة لديكم بمقاسات مختلفة تفضلونها مثل (200مل، 330مل، 600مل). أغلب شركات
+            المياه متوفرة لدينا لتناسب ذوقك.</p>
+          <div class="collection-price">
+            <span>توفير</span>
+            <span class="currency">أسعار بمتناول الجميع</span>
+          </div>
+          <button class="btn-order" onclick="openOrder('مياه معبأة بجميع الأحجام')">
+            اطلب الآن
+          </button>
         </div>
 
-        <!-- نوفا -->
-        <div class="collection-item reveal">
-          <h3>نوفا</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">12 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">15 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">17 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('نوفا')">اطلب الآن</button>
-        </div>
-
-        <!-- حياة -->
-        <div class="collection-item reveal">
-          <h3>حياة</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">14 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">16 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">19 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">21 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('حياة')">اطلب الآن</button>
-        </div>
-
-        <!-- بيرين -->
-        <div class="collection-item reveal">
-          <h3>بيرين</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">13 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">15 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">18 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('بيرين')">اطلب الآن</button>
-        </div>
-
-        <!-- صفا -->
-        <div class="collection-item reveal">
-          <h3>صفا</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">11 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">16 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">19 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('صفا')">اطلب الآن</button>
-        </div>
-
-        <!-- القصيم -->
-        <div class="collection-item reveal">
-          <h3>القصيم</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">10 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">13 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">15 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">18 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('القصيم')">اطلب الآن</button>
-        </div>
-
-        <!-- هنا -->
-        <div class="collection-item reveal">
-          <h3>هنا</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">11 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">16 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">19 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('هنا')">اطلب الآن</button>
-        </div>
-
-        <!-- تانيا -->
-        <div class="collection-item reveal">
-          <h3>تانيا</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>200 مل</span><span class="size-price">12 ر.س / كرتون</span></div>
-            <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س / كرتون</span></div>
-            <div class="size-row"><span>600 مل</span><span class="size-price">17 ر.س / كرتون</span></div>
-            <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س / كرتون</span></div>
-          </div>
-          <button class="btn-order" onclick="openOrder('تانيا')">اطلب الآن</button>
-        </div>
-
-        <!-- قوارير كبيرة -->
+        <!-- Product 2 -->
         <div class="collection-item reveal">
           <span class="collection-tag">للمنازل والمكاتب</span>
-          <h3>قوارير مياه كبيرة</h3>
-          <div class="product-sizes">
-            <div class="size-row"><span>5 جالون (قارورة)</span><span class="size-price">8 ر.س / قارورة</span></div>
-            <div class="size-row"><span>استبدال القارورة</span><span class="size-price">مجاناً</span></div>
+          <div class="collection-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 3h4v2h-4z" />
+              <path d="M11 5v2" />
+              <path d="M13 5v2" />
+              <path d="M11 7l-3 3v9a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-9l-3-3" />
+              <path d="M8 14s1-1 2-1 2 1 2 1 1-1 2-1 2 1 2 1" />
+              <path d="M8 18s1-1 2-1 2 1 2 1 1-1 2-1 2 1 2 1" />
+            </svg>
           </div>
-          <button class="btn-order" onclick="openOrder('قوارير مياه كبيرة')">اطلب الآن</button>
+          <h3>قوارير مياه كبيرة</h3>
+          <p>قوارير مياه للمبردات المنزلية والمكتبية. نوفر خدمة توصيل واستبدال العبوات الفارغة بسهولة من أفضل الشركات.
+          </p>
+          <div class="collection-price">
+            <span>استبدال</span>
+            <span class="currency">سريع</span>
+          </div>
+          <button class="btn-order" onclick="openOrder('قوارير مياه كبيرة')">
+            اطلب الآن
+          </button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="collection-item reveal">
+          <span class="collection-tag">أجر وثواب</span>
+          <div class="collection-icon">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="21" x2="21" y2="21" />
+              <path d="M6 21v-5a6 6 0 0 1 12 0v5" />
+              <line x1="12" y1="10" x2="12" y2="4" />
+              <line x1="10" y1="7" x2="14" y2="7" />
+              <path d="M11.5 1.5a2 2 0 1 0 1 3.5 1.5 1.5 0 0 1-1-3.5z" />
+            </svg>
+          </div>
+          <h3>باقات المساجد والمدارس</h3>
+          <p>عرض خاص لتوزيع المياه على المساجد والمدارس، يتم التوصيل مباشرة بأسعار الجملة المخفضة.</p>
+          <div class="collection-price">
+            <span>جملة</span>
+            <span class="currency">باقات مرنة</span>
+          </div>
+          <button class="btn-order" onclick="openOrder('باقات المساجد والمدارس')">
+            اطلب الآن
+          </button>
         </div>
       </div>
     </div>
@@ -187,6 +155,25 @@
     <img src="assets/products.png" alt="تشكيلة متنوعة من عبوات المياه" loading="lazy">
     <div class="product-showcase-overlay"></div>
   </div>
+
+  <!-- ====== WATER BRANDS ====== -->
+  <section class="brands section-padding reveal" id="brands">
+    <div class="container">
+      <p class="section-label">علاماتنا التجارية</p>
+      <h2 class="section-heading">أفضل <em>الماركات</em> متوفرة</h2>
+      <div class="gold-line"></div>
+      <div class="brands-grid">
+        <div class="brand-item"><span class="brand-name">أروى</span></div>
+        <div class="brand-item"><span class="brand-name">نوفا</span></div>
+        <div class="brand-item"><span class="brand-name">حياة</span></div>
+        <div class="brand-item"><span class="brand-name">بيرين</span></div>
+        <div class="brand-item"><span class="brand-name">صفا</span></div>
+        <div class="brand-item"><span class="brand-name">القصيم</span></div>
+        <div class="brand-item"><span class="brand-name">هنا</span></div>
+        <div class="brand-item"><span class="brand-name">تانيا</span></div>
+      </div>
+    </div>
+  </section>
 
   <!-- ====== WELLNESS / BENEFITS ====== -->
   <section class="wellness section-padding reveal" id="wellness">
@@ -246,7 +233,7 @@
         <div class="process-step reveal">
           <div class="step-number">١</div>
           <h3>اطلب ببساطة</h3>
-          <p>اختر منتجك من القائمة واضغط "اطلب الآن" لتعبئة نموذج الطلب.</p>
+          <p>تواصل معنا عبر الواتساب لاختيار طلبك من الكراتين أو استبدال القوارير.</p>
         </div>
         <div class="process-step reveal">
           <div class="step-number">٢</div>
@@ -262,13 +249,94 @@
     </div>
   </section>
 
-  <!-- ====== MOSQUES & SCHOOLS SUBSCRIPTIONS ====== -->
+  <!-- ====== FAQ ====== -->
+  <section class="faq section-padding reveal" id="faq">
+    <div class="container">
+      <p class="section-label">أسئلة شائعة</p>
+      <h2 class="section-heading">كل ما تحتاج <em>معرفته</em></h2>
+      <div class="gold-line"></div>
+
+      <div class="faq-list">
+        <div class="faq-item" id="faq-1">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+            <span>ما هي مناطق التغطية في الرياض؟</span>
+            <span class="faq-arrow"><svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z" />
+              </svg></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region">
+            <div class="faq-answer-inner">
+              نغطي جميع أحياء الرياض بأسطول متكامل ومجهز لتلبية طلبات التوصيل. للمزيد من التفاصيل يرجى التواصل معنا عبر
+              واتساب.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-2">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+            <span>كم يستغرق التوصيل؟</span>
+            <span class="faq-arrow"><svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z" />
+              </svg></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-2" role="region">
+            <div class="faq-answer-inner">
+              نلتزم بالتوصيل في أسرع وقت ممكن وغالبا خلال ساعات قليلة لمنزلك أو لموقع التوزيع.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-3">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+            <span>هل يوجد حد أدنى للطلب؟</span>
+            <span class="faq-arrow"><svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z" />
+              </svg></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-3" role="region">
+            <div class="faq-answer-inner">
+              الحد الأدنى لطلبات المنازل هو 10 كراتين، وللمساجد والمدارس 25 كرتونا لضمان أفضل سعر لتكلفة التوصيل.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-4">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+            <span>ما هي طرق الدفع المتاحة؟</span>
+            <span class="faq-arrow"><svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z" />
+              </svg></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-4" role="region">
+            <div class="faq-answer-inner">
+              نقبل جميع طرق الدفع: مدى، Apple Pay، كاش عند الاستلام، والتحويل البنكي.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item" id="faq-5">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+            <span>هل يتوفر خدمة توريد للمدارس؟</span>
+            <span class="faq-arrow"><svg viewBox="0 0 24 24">
+                <path d="M7 10l5 5 5-5z" />
+              </svg></span>
+          </button>
+          <div class="faq-answer" id="faq-answer-5" role="region">
+            <div class="faq-answer-inner">
+              نعم، نوفر عقود توريد يومية أو أسبوعية للمدارس بأسعار جملة وعروض خاصة تناسب جميع الاحتياجات.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SUBSCRIPTIONS ====== -->
   <section class="subscriptions section-padding reveal" id="subscriptions">
     <div class="container">
-      <p class="section-label">باقات المساجد والمدارس</p>
-      <h2 class="section-heading">أجر وثواب <em>وتوفير</em></h2>
+      <p class="section-label">اشتراكات مرنة</p>
+      <h2 class="section-heading">اشترك <em>ووفّر</em></h2>
       <div class="gold-line"></div>
-      <p class="sub-intro">عروض خاصة لتوزيع المياه على المساجد والمدارس بأسعار الجملة المخفضة. اختر الباقة المناسبة:</p>
       <div class="sub-grid">
         <div class="sub-card reveal">
           <div class="sub-badge">أسبوعي</div>
@@ -282,14 +350,13 @@
             </svg>
           </div>
           <h3>اشتراك أسبوعي</h3>
-          <p>توصيل منتظم كل أسبوع حسب احتياجك. مثالي للمساجد والمدارس.</p>
+          <p>توصيل منتظم كل أسبوع حسب احتياجك. مثالي للمنازل والمكاتب.</p>
           <ul class="sub-features">
             <li>توصيل مرة كل أسبوع</li>
             <li>إمكانية تعديل الكمية</li>
             <li>إلغاء في أي وقت</li>
-            <li>أسعار جملة مخفضة</li>
           </ul>
-          <button class="btn-order" onclick="openOrder('اشتراك أسبوعي - مساجد ومدارس')">اشترك الآن</button>
+          <button class="btn-order" onclick="openOrder('اشتراك أسبوعي')">اشترك الآن</button>
         </div>
         <div class="sub-card reveal">
           <div class="sub-badge best">شهري - الأوفر</div>
@@ -309,68 +376,8 @@
             <li>توصيل 4 مرات شهرياً</li>
             <li>خصم خاص للمشتركين</li>
             <li>أولوية في التوصيل</li>
-            <li>توثيق بالصور عند التسليم</li>
           </ul>
-          <button class="btn-order" onclick="openOrder('اشتراك شهري - مساجد ومدارس')">اشترك الآن</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== FAQ ====== -->
-  <section class="faq section-padding reveal" id="faq">
-    <div class="container">
-      <p class="section-label">أسئلة شائعة</p>
-      <h2 class="section-heading">كل ما تحتاج <em>معرفته</em></h2>
-      <div class="gold-line"></div>
-
-      <div class="faq-list">
-        <div class="faq-item" id="faq-1">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-            <span>ما هي مناطق التغطية؟</span>
-            <span class="faq-arrow"><svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z" />
-              </svg></span>
-          </button>
-          <div class="faq-answer" id="faq-answer-1" role="region">
-            <div class="faq-answer-inner">نغطي الخرج والمناطق المجاورة بأسطول متكامل ومجهز لتلبية طلبات التوصيل.</div>
-          </div>
-        </div>
-
-        <div class="faq-item" id="faq-2">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-            <span>كم يستغرق التوصيل؟</span>
-            <span class="faq-arrow"><svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z" />
-              </svg></span>
-          </button>
-          <div class="faq-answer" id="faq-answer-2" role="region">
-            <div class="faq-answer-inner">نلتزم بالتوصيل في أسرع وقت ممكن وغالبا خلال ساعات قليلة.</div>
-          </div>
-        </div>
-
-        <div class="faq-item" id="faq-3">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-            <span>هل يوجد حد أدنى للطلب؟</span>
-            <span class="faq-arrow"><svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z" />
-              </svg></span>
-          </button>
-          <div class="faq-answer" id="faq-answer-3" role="region">
-            <div class="faq-answer-inner">الحد الأدنى للمنازل 10 كراتين، وللمساجد والمدارس 25 كرتونا.</div>
-          </div>
-        </div>
-
-        <div class="faq-item" id="faq-4">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-            <span>ما هي طرق الدفع المتاحة؟</span>
-            <span class="faq-arrow"><svg viewBox="0 0 24 24">
-                <path d="M7 10l5 5 5-5z" />
-              </svg></span>
-          </button>
-          <div class="faq-answer" id="faq-answer-4" role="region">
-            <div class="faq-answer-inner">نقبل: كاش عند الاستلام، مدى، Apple Pay، والتحويل البنكي.</div>
-          </div>
+          <button class="btn-order" onclick="openOrder('اشتراك شهري')">اشترك الآن</button>
         </div>
       </div>
     </div>
@@ -409,7 +416,7 @@
 
       <div class="footer-links">
         <a href="#collection">المنتجات</a>
-        <a href="#subscriptions">الباقات</a>
+        <a href="#wellness">ميزاتنا</a>
         <a href="#process">آلية الطلب</a>
         <a href="#charity">نتبرع لأجلكم</a>
       </div>
@@ -434,10 +441,24 @@
       <p class="modal-subtitle">عبّي البيانات وبنتواصل معك</p>
 
       <form id="orderForm">
+        <!-- Product -->
         <div class="form-group">
           <label>المنتج</label>
           <select id="orderProduct" required>
             <option value="">اختر المنتج</option>
+            <option value="مياه معبأة بجميع الأحجام">مياه معبأة بجميع الأحجام</option>
+            <option value="قوارير مياه كبيرة">قوارير مياه كبيرة</option>
+            <option value="باقات المساجد والمدارس">باقات المساجد والمدارس</option>
+            <option value="اشتراك أسبوعي">اشتراك أسبوعي</option>
+            <option value="اشتراك شهري">اشتراك شهري</option>
+          </select>
+        </div>
+
+        <!-- Brand -->
+        <div class="form-group">
+          <label>العلامة التجارية</label>
+          <select id="orderBrand">
+            <option value="أي ماركة">أي ماركة</option>
             <option value="أروى">أروى</option>
             <option value="نوفا">نوفا</option>
             <option value="حياة">حياة</option>
@@ -446,23 +467,10 @@
             <option value="القصيم">القصيم</option>
             <option value="هنا">هنا</option>
             <option value="تانيا">تانيا</option>
-            <option value="قوارير مياه كبيرة">قوارير مياه كبيرة</option>
-            <option value="اشتراك أسبوعي - مساجد ومدارس">اشتراك أسبوعي - مساجد ومدارس</option>
-            <option value="اشتراك شهري - مساجد ومدارس">اشتراك شهري - مساجد ومدارس</option>
           </select>
         </div>
 
-        <div class="form-group">
-          <label>الحجم</label>
-          <select id="orderSize">
-            <option value="200 مل">200 مل</option>
-            <option value="330 مل">330 مل</option>
-            <option value="600 مل" selected>600 مل</option>
-            <option value="1.5 لتر">1.5 لتر</option>
-            <option value="5 جالون">5 جالون (قارورة)</option>
-          </select>
-        </div>
-
+        <!-- Quantity -->
         <div class="form-group">
           <label>الكمية</label>
           <div class="qty-control">
@@ -472,6 +480,7 @@
           </div>
         </div>
 
+        <!-- Customer Info -->
         <div class="form-group">
           <label>الاسم</label>
           <input type="text" id="orderName" placeholder="اسمك الكريم" required>
@@ -487,6 +496,7 @@
           <input type="text" id="orderAddress" placeholder="الحي، الشارع، رقم المنزل" required>
         </div>
 
+        <!-- Payment Method -->
         <div class="form-group">
           <label>طريقة الدفع</label>
           <div class="payment-methods">
@@ -539,6 +549,7 @@
           </div>
         </div>
 
+        <!-- Notes -->
         <div class="form-group">
           <label>ملاحظات (اختياري)</label>
           <textarea id="orderNotes" placeholder="أي تفاصيل إضافية..." rows="2"></textarea>
