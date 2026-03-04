@@ -281,4 +281,147 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Cart Logic ---------- */
+  let cart = [];
+
+  window.addSelectedToCart = function (btn) {
+    const card = btn.closest('.brand-card');
+    if (!card) return;
+
+    const checkboxes = card.querySelectorAll('.product-checkbox:checked');
+    if (checkboxes.length === 0) {
+      alert('يرجى اختيار منتج واحد على الأقل لتتم إضافته للسلة.');
+      return;
+    }
+
+    checkboxes.forEach(cb => {
+      const product = cb.getAttribute('data-product');
+      const brand = cb.getAttribute('data-brand');
+      const size = cb.getAttribute('data-size');
+      const price = parseFloat(cb.getAttribute('data-price')) || 0;
+
+      // Check if item already in cart
+      const existingItem = cart.find(item => item.product === product && item.brand === brand && item.size === size);
+
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({
+          product,
+          brand,
+          size,
+          price,
+          qty: 1
+        });
+      }
+
+      // Uncheck it
+      cb.checked = false;
+    });
+
+    updateCartUI();
+    openCartModal(); // Show cart after adding
+  };
+
+  window.updateCartUI = function () {
+    const badge = document.getElementById('cartBadge');
+    const floatingCart = document.getElementById('floatingCart');
+    const container = document.getElementById('cartItemsContainer');
+    const totalEl = document.getElementById('cartTotal');
+
+    // Update badge and visibility
+    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    if (badge) badge.innerText = totalQty;
+    if (floatingCart) {
+      floatingCart.style.display = totalQty > 0 ? 'flex' : 'none';
+    }
+
+    if (!container) return;
+
+    if (cart.length === 0) {
+      container.innerHTML = '<div class="empty-cart-msg">السلة فارغة</div>';
+      if (totalEl) totalEl.innerText = '0 ر.س';
+      return;
+    }
+
+    let html = '';
+    let totalAmount = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.price * item.qty;
+      totalAmount += itemTotal;
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.brand} - ${item.size}</div>
+            <div class="cart-item-price">${item.price} ر.س x ${item.qty} = <strong>${itemTotal} ر.س</strong></div>
+          </div>
+          <div class="cart-item-actions">
+            <button class="btn-remove-item" onclick="removeFromCart(${index})">حذف</button>
+          </div>
+        </div>
+      `;
+    });
+
+    container.innerHTML = html;
+    if (totalEl) totalEl.innerText = totalAmount + ' ر.س';
+  };
+
+  window.removeFromCart = function (index) {
+    cart.splice(index, 1);
+    updateCartUI();
+    if (cart.length === 0) {
+      closeCartModal();
+    }
+  };
+
+  window.openCartModal = function () {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+      updateCartUI();
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  };
+
+  window.closeCartModal = function () {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.checkoutCart = function () {
+    if (cart.length === 0) return;
+
+    let msg = `طلب جديد من سلة المشتريات (روافد الأنهار)\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+
+    let totalAmount = 0;
+    cart.forEach((item, index) => {
+      msg += `${index + 1}. ${item.product} - ${item.brand}\n`;
+      msg += `   الحجم: ${item.size} | الكمية: ${item.qty}\n`;
+      if (item.price > 0) {
+        msg += `   السعر: ${item.price * item.qty} ر.س\n`;
+      }
+      totalAmount += item.price * item.qty;
+    });
+
+    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+    msg += `الإجمالي: ${totalAmount} ر.س\n`;
+    msg += `\nيرجى تزويدي بطريقة الدفع والعنوان، شكراً.`;
+
+    const encoded = encodeURIComponent(msg);
+    window.open(`https://wa.me/966506939956?text=${encoded}`, '_blank');
+  };
+
+  // Close cart modal on overlay click
+  const cartModalOverlay = document.getElementById('cartModal');
+  if (cartModalOverlay) {
+    cartModalOverlay.addEventListener('click', (e) => {
+      if (e.target === cartModalOverlay) closeCartModal();
+    });
+  }
+
 });

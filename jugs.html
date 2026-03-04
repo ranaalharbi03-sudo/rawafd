@@ -57,12 +57,19 @@
                         <img src="assets/nova.png" alt="نوفا">
                     </div>
                     <div class="brand-card-body">
-                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">8 ر.س</span></div>
+                        <label class="selectable-row">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="product-checkbox" data-product="قوارير مياه كبيرة"
+                                    data-brand="نوفا" data-size="قارورة 5 جالون" data-price="8">
+                                <span>قارورة 5 جالون</span>
+                            </div>
+                            <span class="size-price">8 ر.س</span>
+                        </label>
                         <div class="size-row"><span>استبدال القارورة الفارغة</span><span
                                 class="size-price">مجاناً</span></div>
                         <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
                     </div>
-                    <button class="btn-order" onclick="openOrder('قوارير نوفا')">اطلب الآن</button>
+                    <button class="btn-add-to-cart-selected" onclick="addSelectedToCart(this)">أضف للسلة</button>
                 </div>
 
                 <!-- القصيم -->
@@ -74,12 +81,19 @@
                         <img src="assets/qassim.png" alt="القصيم">
                     </div>
                     <div class="brand-card-body">
-                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">7 ر.س</span></div>
+                        <label class="selectable-row">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="product-checkbox" data-product="قوارير مياه كبيرة"
+                                    data-brand="القصيم" data-size="قارورة 5 جالون" data-price="7">
+                                <span>قارورة 5 جالون</span>
+                            </div>
+                            <span class="size-price">7 ر.س</span>
+                        </label>
                         <div class="size-row"><span>استبدال القارورة الفارغة</span><span
                                 class="size-price">مجاناً</span></div>
                         <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
                     </div>
-                    <button class="btn-order" onclick="openOrder('قوارير القصيم')">اطلب الآن</button>
+                    <button class="btn-add-to-cart-selected" onclick="addSelectedToCart(this)">أضف للسلة</button>
                 </div>
 
                 <!-- هنا -->
@@ -91,12 +105,19 @@
                         <img src="assets/hana.png" alt="هنا">
                     </div>
                     <div class="brand-card-body">
-                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">7 ر.س</span></div>
+                        <label class="selectable-row">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="product-checkbox" data-product="قوارير مياه كبيرة"
+                                    data-brand="هنا" data-size="قارورة 5 جالون" data-price="7">
+                                <span>قارورة 5 جالون</span>
+                            </div>
+                            <span class="size-price">7 ر.س</span>
+                        </label>
                         <div class="size-row"><span>استبدال القارورة الفارغة</span><span
                                 class="size-price">مجاناً</span></div>
                         <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
                     </div>
-                    <button class="btn-order" onclick="openOrder('قوارير هنا')">اطلب الآن</button>
+                    <button class="btn-add-to-cart-selected" onclick="addSelectedToCart(this)">أضف للسلة</button>
                 </div>
 
                 <!-- تانيا -->
@@ -108,59 +129,50 @@
                         <img src="assets/tania.png" alt="تانيا">
                     </div>
                     <div class="brand-card-body">
-                        <div class="size-row"><span>قارورة 5 جالون</span><span class="size-price">8 ر.س</span></div>
+                        <label class="selectable-row">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" class="product-checkbox" data-product="قوارير مياه كبيرة"
+                                    data-brand="تانيا" data-size="قارورة 5 جالون" data-price="8">
+                                <span>قارورة 5 جالون</span>
+                            </div>
+                            <span class="size-price">8 ر.س</span>
+                        </label>
                         <div class="size-row"><span>استبدال القارورة الفارغة</span><span
                                 class="size-price">مجاناً</span></div>
                         <div class="size-row"><span>التوصيل</span><span class="size-price">مجاناً</span></div>
                     </div>
-                    <button class="btn-order" onclick="openOrder('قوارير تانيا')">اطلب الآن</button>
+                    <button class="btn-add-to-cart-selected" onclick="addSelectedToCart(this)">أضف للسلة</button>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- ====== ORDER MODAL ====== -->
-    <div class="order-modal-overlay" id="orderModal">
-        <div class="order-modal">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <h2>اطلب الآن</h2>
-            <p class="modal-subtitle">عبّي البيانات وبنتواصل معك</p>
-            <form id="orderForm">
-                <div class="form-group"><label>المنتج</label><select id="orderProduct" required>
-                        <option value="">اختر المنتج</option>
-                        <option value="قوارير نوفا">قوارير نوفا</option>
-                        <option value="قوارير القصيم">قوارير القصيم</option>
-                        <option value="قوارير هنا">قوارير هنا</option>
-                        <option value="قوارير تانيا">قوارير تانيا</option>
-                    </select></div>
-                <div class="form-group"><label>الكمية</label>
-                    <div class="qty-control"><button type="button" class="qty-btn" id="qtyMinus">-</button><input
-                            type="number" id="orderQty" value="1" min="1" max="100"><button type="button"
-                            class="qty-btn" id="qtyPlus">+</button></div>
-                </div>
-                <div class="form-group"><label>الاسم</label><input type="text" id="orderName" placeholder="اسمك الكريم"
-                        required></div>
-                <div class="form-group"><label>رقم الجوال</label><input type="tel" id="orderPhone"
-                        placeholder="05XXXXXXXX" required dir="ltr"></div>
-                <div class="form-group"><label>العنوان</label><input type="text" id="orderAddress"
-                        placeholder="الحي، الشارع، رقم المنزل" required></div>
-                <div class="form-group"><label>طريقة الدفع</label>
-                    <div class="payment-methods">
-                        <label class="payment-option"><input type="radio" name="payment" value="كاش عند الاستلام"
-                                checked><span class="payment-label">كاش</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="مدى"><span
-                                class="payment-label">مدى</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="Apple Pay"><span
-                                class="payment-label">Apple Pay</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="تحويل بنكي"><span
-                                class="payment-label">تحويل</span></label>
-                    </div>
-                </div>
-                <div class="form-group"><label>ملاحظات (اختياري)</label><textarea id="orderNotes"
-                        placeholder="أي تفاصيل إضافية..." rows="2"></textarea></div>
-                <button type="submit" class="btn-submit-order">تأكيد الطلب</button>
-            </form>
+    <!-- ====== FLOATING CART ====== -->
+    <div class="floating-cart" id="floatingCart" onclick="openCartModal()" style="display: none;">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+    </div>
+
+    <!-- ====== CART MODAL ====== -->
+    <div class="cart-modal-overlay" id="cartModal">
+        <div class="cart-modal">
+            <button class="modal-close" onclick="closeCartModal()">&times;</button>
+            <h2>سلة الطلبات</h2>
+            <div id="cartItemsContainer">
+                <div class="empty-cart-msg">السلة فارغة</div>
+            </div>
+            <div class="cart-total-container">
+                <span>الإجمالي:</span>
+                <span class="cart-total" id="cartTotal">0 ر.س</span>
+            </div>
+            <button class="btn-submit-order" onclick="checkoutCart()" style="margin-top: 15px;">إتمام الطلب عبر
+                واتساب</button>
         </div>
     </div>
 
