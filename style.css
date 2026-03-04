@@ -1564,6 +1564,108 @@ button {
   margin-bottom: var(--space-md);
 }
 
+/* ========================================
+   EXPANDABLE CARD DETAILS
+   ======================================== */
+.collection-item[onclick] {
+  cursor: pointer;
+  position: relative;
+}
+
+.expand-arrow {
+  display: block;
+  text-align: center;
+  color: var(--clr-gold);
+  font-size: .9rem;
+  margin-top: var(--space-xs);
+  transition: transform var(--dur) var(--ease);
+}
+
+.collection-item.expanded .expand-arrow {
+  transform: rotate(180deg);
+}
+
+.card-details {
+  display: none;
+  grid-column: 1 / -1;
+  padding: var(--space-md) 0;
+  animation: slideDown .35s var(--ease);
+}
+
+.card-details.active {
+  display: block;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.brand-detail-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 119, 204, 0.1);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  text-align: center;
+  transition: all var(--dur) var(--ease);
+}
+
+.brand-detail-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 119, 204, 0.1);
+  border-color: var(--clr-gold);
+}
+
+.brand-detail-card h4 {
+  font-family: var(--ff-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: var(--space-xs);
+}
+
+.btn-order-sm {
+  display: inline-block;
+  background: var(--clr-gold);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: .4rem 1.2rem;
+  font-family: var(--ff-body);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var(--space-xs);
+  transition: all var(--dur) var(--ease);
+}
+
+.btn-order-sm:hover {
+  background: #005fa3;
+  transform: translateY(-1px);
+}
+
+.package-desc {
+  font-family: var(--ff-body);
+  font-size: .8rem;
+  color: var(--clr-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
 .form-group {
   margin-bottom: var(--space-sm);
 }

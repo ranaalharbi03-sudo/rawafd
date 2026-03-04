@@ -71,8 +71,8 @@
       <div class="gold-line"></div>
 
       <div class="collection-grid">
-        <!-- Product 1 -->
-        <div class="collection-item reveal">
+        <!-- Product 1: مياه معبأة -->
+        <div class="collection-item reveal" id="card-bottles" onclick="toggleDetails('details-bottles')">
           <span class="collection-tag">تشكيلة واسعة</span>
           <div class="collection-icon">
             <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
@@ -86,19 +86,80 @@
             </svg>
           </div>
           <h3>مياه معبأة بجميع الأحجام</h3>
-          <p>نوفر جميع العلامات التجارية المفضلة لديكم بمقاسات مختلفة تفضلونها مثل (200مل، 330مل، 600مل). أغلب شركات
-            المياه متوفرة لدينا لتناسب ذوقك.</p>
-          <div class="collection-price">
-            <span>توفير</span>
-            <span class="currency">أسعار بمتناول الجميع</span>
+          <p>اضغط لعرض الأنواع والأسعار</p>
+          <span class="expand-arrow">▼</span>
+        </div>
+        <div class="card-details" id="details-bottles">
+          <div class="details-grid">
+            <div class="brand-detail-card">
+              <h4>أروى</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">15 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">18 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">20 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">22 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('أروى')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>نوفا</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">12 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">15 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">17 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('نوفا')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>حياة</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">14 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">16 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">19 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">21 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('حياة')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>بيرين</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">13 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">15 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">18 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('بيرين')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>صفا</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">11 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">16 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">19 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('صفا')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>القصيم</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">10 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">13 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">15 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">18 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('القصيم')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>هنا</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">11 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">16 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">19 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('هنا')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>تانيا</h4>
+              <div class="size-row"><span>200 مل</span><span class="size-price">12 ر.س</span></div>
+              <div class="size-row"><span>330 مل</span><span class="size-price">14 ر.س</span></div>
+              <div class="size-row"><span>600 مل</span><span class="size-price">17 ر.س</span></div>
+              <div class="size-row"><span>1.5 لتر</span><span class="size-price">20 ر.س</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('تانيا')">اطلب</button>
+            </div>
           </div>
-          <button class="btn-order" onclick="openOrder('مياه معبأة بجميع الأحجام')">
-            اطلب الآن
-          </button>
         </div>
 
-        <!-- Product 2 -->
-        <div class="collection-item reveal">
+        <!-- Product 2: قوارير كبيرة -->
+        <div class="collection-item reveal" id="card-jugs" onclick="toggleDetails('details-jugs')">
           <span class="collection-tag">للمنازل والمكاتب</span>
           <div class="collection-icon">
             <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
@@ -112,19 +173,40 @@
             </svg>
           </div>
           <h3>قوارير مياه كبيرة</h3>
-          <p>قوارير مياه للمبردات المنزلية والمكتبية. نوفر خدمة توصيل واستبدال العبوات الفارغة بسهولة من أفضل الشركات.
-          </p>
-          <div class="collection-price">
-            <span>استبدال</span>
-            <span class="currency">سريع</span>
+          <p>اضغط لعرض الأنواع والأسعار</p>
+          <span class="expand-arrow">▼</span>
+        </div>
+        <div class="card-details" id="details-jugs">
+          <div class="details-grid">
+            <div class="brand-detail-card">
+              <h4>نوفا</h4>
+              <div class="size-row"><span>5 جالون</span><span class="size-price">8 ر.س</span></div>
+              <div class="size-row"><span>استبدال</span><span class="size-price">مجاناً</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('قوارير نوفا')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>القصيم</h4>
+              <div class="size-row"><span>5 جالون</span><span class="size-price">7 ر.س</span></div>
+              <div class="size-row"><span>استبدال</span><span class="size-price">مجاناً</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('قوارير القصيم')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>هنا</h4>
+              <div class="size-row"><span>5 جالون</span><span class="size-price">7 ر.س</span></div>
+              <div class="size-row"><span>استبدال</span><span class="size-price">مجاناً</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('قوارير هنا')">اطلب</button>
+            </div>
+            <div class="brand-detail-card">
+              <h4>تانيا</h4>
+              <div class="size-row"><span>5 جالون</span><span class="size-price">8 ر.س</span></div>
+              <div class="size-row"><span>استبدال</span><span class="size-price">مجاناً</span></div>
+              <button class="btn-order-sm" onclick="event.stopPropagation(); openOrder('قوارير تانيا')">اطلب</button>
+            </div>
           </div>
-          <button class="btn-order" onclick="openOrder('قوارير مياه كبيرة')">
-            اطلب الآن
-          </button>
         </div>
 
-        <!-- Product 3 -->
-        <div class="collection-item reveal">
+        <!-- Product 3: باقات المساجد -->
+        <div class="collection-item reveal" id="card-mosques" onclick="toggleDetails('details-mosques')">
           <span class="collection-tag">أجر وثواب</span>
           <div class="collection-icon">
             <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="var(--clr-gold)" stroke-width="1.5"
@@ -137,14 +219,39 @@
             </svg>
           </div>
           <h3>باقات المساجد والمدارس</h3>
-          <p>عرض خاص لتوزيع المياه على المساجد والمدارس، يتم التوصيل مباشرة بأسعار الجملة المخفضة.</p>
-          <div class="collection-price">
-            <span>جملة</span>
-            <span class="currency">باقات مرنة</span>
+          <p>اضغط لعرض الباقات والأسعار</p>
+          <span class="expand-arrow">▼</span>
+        </div>
+        <div class="card-details" id="details-mosques">
+          <div class="details-grid">
+            <div class="brand-detail-card package-card">
+              <div class="sub-badge">يومي</div>
+              <h4>باقة يومية</h4>
+              <p class="package-desc">توصيل يومي للمساجد والمدارس</p>
+              <div class="size-row"><span>25 كرتون يومياً</span><span class="size-price">تواصل للسعر</span></div>
+              <button class="btn-order-sm"
+                onclick="event.stopPropagation(); openOrder('باقة يومية - مساجد ومدارس')">اشترك</button>
+            </div>
+            <div class="brand-detail-card package-card">
+              <div class="sub-badge">أسبوعي</div>
+              <h4>باقة أسبوعية</h4>
+              <p class="package-desc">توصيل مرة كل أسبوع بأسعار مخفضة</p>
+              <div class="size-row"><span>إمكانية تعديل الكمية</span><span class="size-price">خصم 10%</span></div>
+              <div class="size-row"><span>إلغاء في أي وقت</span><span class="size-price">✓</span></div>
+              <button class="btn-order-sm"
+                onclick="event.stopPropagation(); openOrder('باقة أسبوعية - مساجد ومدارس')">اشترك</button>
+            </div>
+            <div class="brand-detail-card package-card">
+              <div class="sub-badge best">شهري - الأوفر</div>
+              <h4>باقة شهرية</h4>
+              <p class="package-desc">4 توصيلات شهرياً مع أولوية وخصم خاص</p>
+              <div class="size-row"><span>خصم خاص للمشتركين</span><span class="size-price">خصم 20%</span></div>
+              <div class="size-row"><span>أولوية في التوصيل</span><span class="size-price">✓</span></div>
+              <div class="size-row"><span>توثيق بالصور</span><span class="size-price">✓</span></div>
+              <button class="btn-order-sm"
+                onclick="event.stopPropagation(); openOrder('باقة شهرية - مساجد ومدارس')">اشترك</button>
+            </div>
           </div>
-          <button class="btn-order" onclick="openOrder('باقات المساجد والمدارس')">
-            اطلب الآن
-          </button>
         </div>
       </div>
     </div>

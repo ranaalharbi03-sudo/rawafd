@@ -166,6 +166,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  /* ---------- Expandable Product Cards ---------- */
+  window.toggleDetails = function (detailsId) {
+    const details = document.getElementById(detailsId);
+    if (!details) return;
+
+    // Close all other open details
+    document.querySelectorAll('.card-details.active').forEach(d => {
+      if (d.id !== detailsId) {
+        d.classList.remove('active');
+        // Remove expanded class from parent card
+        const prevCard = d.previousElementSibling;
+        if (prevCard) prevCard.classList.remove('expanded');
+      }
+    });
+
+    // Toggle this one
+    const isOpen = details.classList.toggle('active');
+    const card = details.previousElementSibling;
+    if (card) card.classList.toggle('expanded', isOpen);
+
+    // Scroll into view
+    if (isOpen) {
+      setTimeout(() => {
+        details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  };
+
   /* ---------- Order Modal ---------- */
   const orderModal = document.getElementById('orderModal');
   const modalClose = document.getElementById('modalClose');
