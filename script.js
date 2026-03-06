@@ -2,7 +2,224 @@
    SCRIPT — Luxury Water Brand Website
    ======================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+// Supabase Configuration
+const SUPABASE_URL = 'https://dceieamoqgemqoerpuzq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZWllYW1vcWdlbXFvZXJwdXpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDY3ODEsImV4cCI6MjA4ODMyMjc4MX0.OyzeztND2iCW-nkPVLW5HeXwQ183_2dt-7pT-7Hcx2k';
+const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+let cart = JSON.parse(localStorage.getItem('waterCart')) || [];
+function saveCart() {
+  localStorage.setItem('waterCart', JSON.stringify(cart));
+}
+
+const waterCatalog = {
+  bottles: {
+    category: "مياه معبأة",
+    "أروى": {
+      name: "أروى",
+      desc: "مياه شرب نقية منعشة، معبأة بأعلى معايير الجودة لتمنحك الترطيب المثالي الذي يحتاجه جسمك في كل يوم. خيارك الأمثل لصفاء الذهن وحيوية الجسد.",
+      img: "assets/arwa.png",
+      sizes: [
+        { size: "200 مل (كرتون)", price: 15 },
+        { size: "330 مل (كرتون)", price: 18 },
+        { size: "600 مل (كرتون)", price: 20 },
+        { size: "1.5 لتر (كرتون)", price: 22 }
+      ]
+    },
+    "نوفا": {
+      name: "نوفا",
+      desc: "مستخرجة من أنقى الآبار الجوفية، مياه نوفا تقدم لك توازناً مثالياً في المعادن لتمنحك طعماً طبيعياً منعشاً يروي عطشك ويجدد طاقتك.",
+      img: "assets/nova.png",
+      sizes: [
+        { size: "200 مل (كرتون)", price: 12 },
+        { size: "330 مل (كرتون)", price: 15 },
+        { size: "600 مل (كرتون)", price: 17 },
+        { size: "1.5 لتر (كرتون)", price: 20 }
+      ]
+    },
+    "بيرين": {
+      name: "بيرين",
+      desc: "مياه بيرين تمنحك تجربة ارتواء استثنائية، فهي مصممة خصيصاً لتواكب نمط حياتك الصحي بتركيبة غنية ومتوازنة وخفيفة على المعدة.",
+      img: "assets/berain.png",
+      sizes: [
+        { size: "200 مل (كرتون)", price: 13 },
+        { size: "330 مل (كرتون)", price: 15 },
+        { size: "600 مل (كرتون)", price: 18 },
+        { size: "1.5 لتر (كرتون)", price: 20 }
+      ]
+    },
+    "القصيم": {
+      name: "القصيم",
+      desc: "من قلب الطبيعة إلى مائدتك، مياه القصيم تقدم لك الطعم الأصيل والمنعش بفضل تركيبتها الطبيعية المنخفضة بالصوديوم للحفاظ على صحتك طوال اليوم.",
+      img: "assets/qassim.png",
+      sizes: [
+        { size: "200 مل (كرتون)", price: 10 },
+        { size: "330 مل (كرتون)", price: 13 },
+        { size: "600 مل (كرتون)", price: 15 },
+        { size: "1.5 لتر (كرتون)", price: 18 }
+      ]
+    },
+    "حياة": {
+      name: "حياة", desc: "نقاء متوازن لك ولعائلتك.", img: "assets/hayat.png",
+      sizes: [{ size: "200 مل (كرتون)", price: 14 }, { size: "330 مل (كرتون)", price: 16 }, { size: "600 مل (كرتون)", price: 19 }, { size: "1.5 لتر (كرتون)", price: 21 }]
+    },
+    "صفا": {
+      name: "صفا", desc: "خيارك اليومي لمياه عذبة ونقية.", img: "assets/safa.png",
+      sizes: [{ size: "200 مل (كرتون)", price: 11 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 16 }, { size: "1.5 لتر (كرتون)", price: 19 }]
+    },
+    "هنا": {
+      name: "هنا", desc: "مياه طبيعية تروي العطش في أي وقت.", img: "assets/hana.png",
+      sizes: [{ size: "200 مل (كرتون)", price: 11 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 16 }, { size: "1.5 لتر (كرتون)", price: 19 }]
+    },
+    "تانيا": {
+      name: "تانيا", desc: "جودة متناهية لتوازن لا يُضاهى.", img: "assets/tania.png",
+      sizes: [{ size: "200 مل (كرتون)", price: 12 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 17 }, { size: "1.5 لتر (كرتون)", price: 20 }]
+    }
+  },
+  jugs: {
+    category: "قوارير مياه كبيرة",
+    "نوفا": { name: "نوفا", desc: "مياه نوفا 5 جالون للمبردات المنزلية والمكتبية بخدمة توصيل مجانية.", img: "assets/nova.png", sizes: [{ size: "قارورة 5 جالون", price: 8 }] },
+    "القصيم": { name: "القصيم", desc: "قارورة القصيم 5 جالون للصحة والنقاء طوال الأسبوع.", img: "assets/qassim.png", sizes: [{ size: "قارورة 5 جالون", price: 7 }] },
+    "هنا": { name: "هنا", desc: "عبوة التوفير للمنازل والشركات من مياه هنا.", img: "assets/hana.png", sizes: [{ size: "قارورة 5 جالون", price: 7 }] },
+    "تانيا": { name: "تانيا", desc: "قارورة 5 جالون عملية وموفرة من تانيا.", img: "assets/tania.png", sizes: [{ size: "قارورة 5 جالون", price: 8 }] }
+  },
+  packages: {
+    category: "باقات المساجد والمدارس",
+    "يومية": { name: "باقة يومية", desc: "توصيل يومي منتظم للمساجد والمدارس حسب الكمية المطلوبة. السعر محدد بالكرتون الواحد (حسب الكميات).", img: "assets/nova.png", sizes: [{ size: "25 كرتون (الحد الأدنى)", price: 300 }, { size: "50 كرتون (توصيل يومي)", price: 580 }] },
+    "أسبوعية": { name: "باقة أسبوعية", desc: "توصيل مرة كل أسبوع بأسعار مخفضة مع إمكانية تعديل الكمية وإلغاء متى شئت.", img: "assets/arwa.png", sizes: [{ size: "اشتراك أسبوعي - 50 كرتون", price: 550 }, { size: "اشتراك أسبوعي - 100 كرتون", price: 1000 }] },
+    "شهرية": { name: "باقة شهرية", desc: "باقة الأوفر! 4 توصيلات شهرياً مع أولوية في التوصيل وتوثيق بالصور.", img: "assets/berain.png", sizes: [{ size: "اشتراك شهري مخفض (100 كرتون مقسمة)", price: 900 }, { size: "اشتراك شهري كبير (200 كرتون مقسمة)", price: 1700 }] }
+  }
+};
+
+window.initProductDetailPage = function () {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  const brandParam = params.get('brand');
+
+  if (!type || !brandParam || !waterCatalog[type] || !waterCatalog[type][brandParam]) {
+    console.error("Invalid product parameters.");
+    return;
+  }
+
+  const category = waterCatalog[type].category;
+  const productData = waterCatalog[type][brandParam];
+  let selectedSizeIndex = 0;
+
+  // Set Breadcrumbs
+  const bcCat = document.getElementById('bc-category');
+  if (bcCat) bcCat.innerText = category;
+  const bcBrand = document.getElementById('bc-brand');
+  if (bcBrand) bcBrand.innerText = productData.name;
+
+  // Set Texts & Image
+  const dTitle = document.getElementById('detail-title');
+  if (dTitle) dTitle.innerText = "مياه " + productData.name;
+
+  const badge = document.getElementById('detail-brand-badge');
+  if (badge) badge.innerText = productData.name;
+
+  const dImg = document.getElementById('detail-img');
+  if (dImg) dImg.src = productData.img;
+
+  // Update Thumbs
+  for (let i = 1; i <= 4; i++) {
+    const thumb = document.getElementById(`thumb${i}`);
+    if (thumb) thumb.src = productData.img;
+  }
+
+  // Thumbnail click logic
+  document.querySelectorAll('.thumb').forEach(thumbBox => {
+    thumbBox.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      thumbBox.classList.add('active');
+    });
+  });
+
+  // Populate Sizes Buttons
+  const sizeContainer = document.getElementById('size-buttons-container');
+  const priceEl = document.getElementById('detail-price');
+  if (sizeContainer && priceEl) {
+    sizeContainer.innerHTML = "";
+    productData.sizes.forEach((s, i) => {
+      const btn = document.createElement('button');
+      btn.className = `size-btn-item ${i === 0 ? 'selected' : ''}`;
+      btn.innerText = s.size;
+      btn.onclick = () => {
+        // Update selection
+        document.querySelectorAll('.size-btn-item').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedSizeIndex = i;
+        // Update price
+        priceEl.innerText = productData.sizes[selectedSizeIndex].price;
+      };
+      sizeContainer.appendChild(btn);
+    });
+    // Init price
+    priceEl.innerText = productData.sizes[0].price;
+  }
+
+  // Quantity controls
+  const qtyInput = document.getElementById('detailQty');
+  const btnMinus = document.getElementById('detailQtyMinus');
+  const btnPlus = document.getElementById('detailQtyPlus');
+
+  if (btnMinus) {
+    btnMinus.addEventListener('click', () => {
+      const val = parseInt(qtyInput.value) || 1;
+      if (val > 1) qtyInput.value = val - 1;
+    });
+  }
+  if (btnPlus) {
+    btnPlus.addEventListener('click', () => {
+      const val = parseInt(qtyInput.value) || 1;
+      if (val < 100) qtyInput.value = val + 1;
+    });
+  }
+
+  // Add to Cart / Buy Now
+  const btnBuy = document.getElementById('btnBuyNow');
+  if (btnBuy) {
+    btnBuy.addEventListener('click', () => {
+      const sizeObj = productData.sizes[selectedSizeIndex];
+      const qty = parseInt(qtyInput.value) || 1;
+
+      const existingItem = cart.find(item => item.product === category && item.brand === productData.name && item.size === sizeObj.size);
+
+      if (existingItem) {
+        existingItem.qty += qty;
+      } else {
+        cart.push({
+          product: category,
+          brand: productData.name,
+          size: sizeObj.size,
+          price: sizeObj.price,
+          qty: qty
+        });
+      }
+
+      saveCart();
+      updateCartUI();
+      openCartModal(); // Show cart modal allowing them to checkout
+    });
+  }
+
+  // Accordions
+  document.querySelectorAll('.accordion-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const parent = btn.parentElement;
+      if (parent.classList.contains('active')) {
+        parent.classList.remove('active');
+        content.style.display = 'none';
+        btn.querySelector('.icon').innerText = '+';
+      } else {
+        parent.classList.add('active');
+        content.style.display = 'block';
+        btn.querySelector('.icon').innerText = '-';
+      }
+    });
+  });
+}; document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Hero slow zoom on load ---------- */
   const hero = document.querySelector('.hero');
@@ -282,7 +499,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Cart Logic ---------- */
-  let cart = [];
 
   window.addSelectedToCart = function (btn) {
     const card = btn.closest('.brand-card');
@@ -319,6 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cb.checked = false;
     });
 
+    saveCart();
     updateCartUI();
     openCartModal(); // Show cart after adding
   };
@@ -369,6 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.removeFromCart = function (index) {
     cart.splice(index, 1);
+    saveCart();
     updateCartUI();
     if (cart.length === 0) {
       closeCartModal();
@@ -394,27 +612,173 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.checkoutCart = function () {
     if (cart.length === 0) return;
-
-    let msg = `طلب جديد من سلة المشتريات (روافد الأنهار)\n`;
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-
-    let totalAmount = 0;
-    cart.forEach((item, index) => {
-      msg += `${index + 1}. ${item.product} - ${item.brand}\n`;
-      msg += `   الحجم: ${item.size} | الكمية: ${item.qty}\n`;
-      if (item.price > 0) {
-        msg += `   السعر: ${item.price * item.qty} ر.س\n`;
-      }
-      totalAmount += item.price * item.qty;
-    });
-
-    msg += `━━━━━━━━━━━━━━━━━━━━\n`;
-    msg += `الإجمالي: ${totalAmount} ر.س\n`;
-    msg += `\nيرجى تزويدي بطريقة الدفع والعنوان، شكراً.`;
-
-    const encoded = encodeURIComponent(msg);
-    window.open(`https://wa.me/966506939956?text=${encoded}`, '_blank');
+    window.location.href = 'checkout.html';
   };
+
+  /* ---------- Checkout Page Logic ---------- */
+  const checkoutItemsList = document.getElementById('checkoutItemsList');
+  if (checkoutItemsList) {
+    renderCheckoutItems();
+
+    function renderCheckoutItems() {
+      let html = '';
+      let subtotal = 0;
+
+      if (cart.length === 0) {
+        checkoutItemsList.innerHTML = '<p style="color: var(--color-gray); padding: 10px 0;">السلة فارغة. يرجى إضافة منتجات أولاً.</p>';
+        document.getElementById('checkoutSubtotal').innerText = '0 ر.س';
+        document.getElementById('checkoutGrandTotal').innerText = '0 ر.س';
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        html += `
+          <div class="checkout-item">
+            <div class="checkout-item-info">
+              <div class="checkout-item-title">${item.brand} - ${item.size}</div>
+              <div class="checkout-item-meta">${item.price} ر.س للقطعة</div>
+              <div class="checkout-item-controls">
+                <button type="button" class="checkout-qty-btn" onclick="updateCheckoutQty(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button type="button" class="checkout-qty-btn" onclick="updateCheckoutQty(${index}, 1)">+</button>
+                <button type="button" class="remove-item-btn" onclick="removeCheckoutItem(${index})">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="checkout-item-price">${itemTotal} ر.س</div>
+          </div>
+        `;
+      });
+
+      checkoutItemsList.innerHTML = html;
+      document.getElementById('checkoutSubtotal').innerText = subtotal + ' ر.س';
+      document.getElementById('checkoutGrandTotal').innerText = subtotal + ' ر.س'; // free delivery
+    }
+
+    window.updateCheckoutQty = function (index, delta) {
+      if (cart[index]) {
+        cart[index].qty += delta;
+        if (cart[index].qty < 1) cart[index].qty = 1;
+        saveCart();
+        updateCartUI(); // Updates the floating cart badge too
+        renderCheckoutItems();
+      }
+    };
+
+    window.removeCheckoutItem = function (index) {
+      if (confirm('هل أنت متأكد من حذف هذا المنتج؟')) {
+        cart.splice(index, 1);
+        saveCart();
+        updateCartUI();
+        renderCheckoutItems();
+      }
+    };
+
+    // Handle Form Submit
+    const checkoutForm = document.getElementById('checkoutForm');
+    checkoutForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (cart.length === 0) {
+        alert('السلة فارغة، لا يمكن إتمام الطلب.');
+        return;
+      }
+
+      // Collect data
+      const name = document.getElementById('checkoutName').value;
+      const phone = document.getElementById('checkoutPhone').value;
+      const city = document.getElementById('checkoutCity').value;
+      const address = document.getElementById('checkoutAddress').value;
+      const deliveryTime = document.querySelector('input[name="deliveryTime"]:checked').value;
+      const payment = document.querySelector('input[name="checkoutPayment"]:checked').value;
+      const notes = document.getElementById('checkoutNotes').value;
+
+      let totalAmount = 0;
+      cart.forEach((item) => {
+        totalAmount += item.price * item.qty;
+      });
+
+      const submitBtn = document.querySelector('.checkout-btn-submit');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'جاري تسجيل الطلب... <span class="loader"></span>';
+      submitBtn.disabled = true;
+
+      // 1. Save to Supabase DB (ensure supabase is loaded)
+      if (supabase) {
+        try {
+          const { data, error } = await supabase
+            .from('orders')
+            .insert([
+              {
+                customer_name: name,
+                customer_phone: phone,
+                city: city,
+                address: address,
+                delivery_time: deliveryTime,
+                payment_method: payment,
+                notes: notes,
+                total_amount: totalAmount,
+                items: cart
+              }
+            ]);
+
+          if (error) {
+            console.error('Error saving order to Supabase:', error);
+          } else {
+            console.log('Order successfully saved to Supabase');
+          }
+        } catch (err) {
+          console.error('Unexpected error inserting into Supabase:', err);
+        }
+      }
+
+      // 2. Prepare WhatsApp Confirmation Message
+      let msg = `🛒 طلب إلكتروني من موقع (روافد الأنهار)\n`;
+      msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `🔹 تفاصيل العميل:\n`;
+      msg += `الاسم: ${name}\n`;
+      msg += `الجوال: ${phone}\n`;
+      msg += `\n📍 التوصيل:\n`;
+      msg += `المدينة/الحي: ${city}\n`;
+      msg += `العنوان: ${address}\n`;
+      msg += `الوقت المفضل: ${deliveryTime}\n`;
+      msg += `\n💳 معلومات الدفع:\n`;
+      msg += `طريقة الدفع: ${payment}\n`;
+      if (notes) msg += `ملاحظات: ${notes}\n`;
+
+      msg += `\n📦 المنتجات المطلوبة:\n`;
+      cart.forEach((item, index) => {
+        msg += `${index + 1}. ${item.product} - ${item.brand} (${item.size})\n`;
+        msg += `   الكمية: ${item.qty} | السعر: ${item.price * item.qty} ر.س\n`;
+      });
+
+      msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+      msg += `الإجمالي الكلي: ${totalAmount} ر.س\n`;
+      msg += `\nالرجاء تأكيد الطلب. شكراً لكم!`;
+
+      // Redirect to WhatsApp
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/966506939956?text=${encoded}`, '_blank');
+
+      // Clear Cart
+      cart = [];
+      saveCart();
+      updateCartUI();
+      renderCheckoutItems();
+
+      alert('تم استلام طلبك بنجاح وتسجيله في النظام! سيتم تحويلك للواتساب لإرسال رسالة التأكيد للمندوب.');
+
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+      window.location.href = 'index.html';
+    });
+  }
 
   // Close cart modal on overlay click
   const cartModalOverlay = document.getElementById('cartModal');

@@ -46,117 +46,49 @@
     <!-- ====== PACKAGES LIST ====== -->
     <section class="product-page section-padding">
         <div class="container">
-            <div class="brands-catalog packages-layout">
+            <div class="brands-catalog"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
 
-                <!-- باقة يومية -->
-                <div class="brand-card package-card reveal">
-                    <div class="brand-card-header">
-                        <h2>باقة يومية</h2>
-                        <span class="brand-badge">يومي</span>
+                <!-- يومية -->
+                <a href="product.html?type=packages&brand=يومية" class="brand-card clean-card catalog-link reveal">
+                    <div class="brand-card-img">
+                        <img src="assets/nova.png" alt="باقة يومية">
                     </div>
                     <div class="brand-card-body">
-                        <p class="package-description">توصيل يومي منتظم للمساجد والمدارس حسب الكمية المطلوبة.</p>
-                        <div class="size-row"><span>الحد الأدنى</span><span class="size-price">25 كرتون</span></div>
-                        <div class="size-row"><span>التوصيل</span><span class="size-price">يومياً</span></div>
-                        <div class="size-row"><span>إمكانية تعديل الكمية</span><span class="size-price">✓</span></div>
-                        <div class="size-row"><span>السعر</span><span class="size-price">تواصل معنا</span></div>
+                        <h3 class="brand-title">باقة يومية</h3>
+                        <p class="brand-desc">توصيل يومي منتظم للمنشآت</p>
+                        <span class="brand-price-start">عرض خاص</span>
                     </div>
-                    <button class="btn-order" onclick="openOrder('باقة يومية - مساجد ومدارس')">اشترك الآن</button>
-                </div>
+                </a>
 
-                <!-- باقة أسبوعية -->
-                <div class="brand-card package-card reveal">
-                    <div class="brand-card-header">
-                        <h2>باقة أسبوعية</h2>
-                        <span class="brand-badge">أسبوعي</span>
+                <!-- أسبوعية -->
+                <a href="product.html?type=packages&brand=أسبوعية" class="brand-card clean-card catalog-link reveal">
+                    <div class="brand-card-img">
+                        <img src="assets/arwa.png" alt="باقة أسبوعية">
                     </div>
                     <div class="brand-card-body">
-                        <p class="package-description">توصيل مرة كل أسبوع بأسعار مخفضة مع إمكانية تعديل الكمية والإلغاء.
-                        </p>
-                        <div class="size-row"><span>التوصيل</span><span class="size-price">مرة أسبوعياً</span></div>
-                        <div class="size-row"><span>إمكانية تعديل الكمية</span><span class="size-price">✓</span></div>
-                        <div class="size-row"><span>إلغاء في أي وقت</span><span class="size-price">✓</span></div>
-                        <div class="size-row"><span>الخصم</span><span class="size-price">10%</span></div>
+                        <h3 class="brand-title">باقة أسبوعية</h3>
+                        <p class="brand-desc">توصيل مرن كل أسبوع بخصم</p>
+                        <span class="brand-price-start">عرض خاص</span>
                     </div>
-                    <button class="btn-order" onclick="openOrder('باقة أسبوعية - مساجد ومدارس')">اشترك الآن</button>
-                </div>
+                </a>
 
-                <!-- باقة شهرية -->
-                <div class="brand-card package-card highlight-card reveal">
-                    <div class="brand-card-header">
-                        <h2>باقة شهرية</h2>
-                        <span class="brand-badge best">الأوفر</span>
+                <!-- شهرية -->
+                <a href="product.html?type=packages&brand=شهرية" class="brand-card clean-card catalog-link reveal">
+                    <div class="brand-card-img">
+                        <img src="assets/berain.png" alt="باقة شهرية">
+                        <span class="discount-badge">الأوفر</span>
                     </div>
                     <div class="brand-card-body">
-                        <p class="package-description">4 توصيلات شهرياً مع أولوية في التوصيل وخصم خاص للمشتركين. الخيار
-                            الأوفر!</p>
-                        <div class="size-row"><span>التوصيل</span><span class="size-price">4 مرات شهرياً</span></div>
-                        <div class="size-row"><span>خصم خاص للمشتركين</span><span class="size-price">20%</span></div>
-                        <div class="size-row"><span>أولوية في التوصيل</span><span class="size-price">✓</span></div>
-                        <div class="size-row"><span>توثيق بالصور عند التسليم</span><span class="size-price">✓</span>
-                        </div>
-                        <div class="size-row"><span>إلغاء في أي وقت</span><span class="size-price">✓</span></div>
+                        <h3 class="brand-title">باقة شهرية</h3>
+                        <p class="brand-desc">أوفر الباقات وتوصيل حسب الجدولة</p>
+                        <span class="brand-price-start">عرض خاص</span>
                     </div>
-                    <button class="btn-order" onclick="openOrder('باقة شهرية - مساجد ومدارس')">اشترك الآن</button>
-                </div>
+                </a>
 
             </div>
         </div>
     </section>
-
-    <!-- ====== ORDER MODAL ====== -->
-    <div class="order-modal-overlay" id="orderModal">
-        <div class="order-modal">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <h2>اطلب الآن</h2>
-            <p class="modal-subtitle">عبّي البيانات وبنتواصل معك</p>
-            <form id="orderForm">
-                <div class="form-group"><label>الباقة</label><select id="orderProduct" required>
-                        <option value="">اختر الباقة</option>
-                        <option value="باقة يومية - مساجد ومدارس">باقة يومية</option>
-                        <option value="باقة أسبوعية - مساجد ومدارس">باقة أسبوعية</option>
-                        <option value="باقة شهرية - مساجد ومدارس">باقة شهرية</option>
-                    </select></div>
-                <div class="form-group"><label>العلامة التجارية المفضلة</label><select id="orderBrand">
-                        <option value="أي ماركة">أي ماركة</option>
-                        <option value="أروى">أروى</option>
-                        <option value="نوفا">نوفا</option>
-                        <option value="حياة">حياة</option>
-                        <option value="بيرين">بيرين</option>
-                        <option value="صفا">صفا</option>
-                        <option value="القصيم">القصيم</option>
-                        <option value="هنا">هنا</option>
-                        <option value="تانيا">تانيا</option>
-                    </select></div>
-                <div class="form-group"><label>الكمية (كرتون)</label>
-                    <div class="qty-control"><button type="button" class="qty-btn" id="qtyMinus">-</button><input
-                            type="number" id="orderQty" value="25" min="25" max="500"><button type="button"
-                            class="qty-btn" id="qtyPlus">+</button></div>
-                </div>
-                <div class="form-group"><label>الاسم</label><input type="text" id="orderName" placeholder="اسمك الكريم"
-                        required></div>
-                <div class="form-group"><label>رقم الجوال</label><input type="tel" id="orderPhone"
-                        placeholder="05XXXXXXXX" required dir="ltr"></div>
-                <div class="form-group"><label>اسم المسجد / المدرسة والعنوان</label><input type="text" id="orderAddress"
-                        placeholder="اسم المسجد أو المدرسة، الحي، الشارع" required></div>
-                <div class="form-group"><label>طريقة الدفع</label>
-                    <div class="payment-methods">
-                        <label class="payment-option"><input type="radio" name="payment" value="كاش عند الاستلام"
-                                checked><span class="payment-label">كاش</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="مدى"><span
-                                class="payment-label">مدى</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="Apple Pay"><span
-                                class="payment-label">Apple Pay</span></label>
-                        <label class="payment-option"><input type="radio" name="payment" value="تحويل بنكي"><span
-                                class="payment-label">تحويل</span></label>
-                    </div>
-                </div>
-                <div class="form-group"><label>ملاحظات (اختياري)</label><textarea id="orderNotes"
-                        placeholder="أي تفاصيل إضافية..." rows="2"></textarea></div>
-                <button type="submit" class="btn-submit-order">تأكيد الطلب</button>
-            </form>
-        </div>
-    </div>
 
     <!-- ====== FLOATING CART ====== -->
     <div class="floating-cart" id="floatingCart" onclick="openCartModal()" style="display: none;">
@@ -181,8 +113,8 @@
                 <span>الإجمالي:</span>
                 <span class="cart-total" id="cartTotal">0 ر.س</span>
             </div>
-            <button class="btn-submit-order" onclick="checkoutCart()" style="margin-top: 15px;">إتمام الطلب عبر
-                واتساب</button>
+            <button class="btn-submit-order" onclick="checkoutCart()" style="margin-top: 15px;">متابعة لإتمام
+                الطلب</button>
         </div>
     </div>
 

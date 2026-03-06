@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إتمام الطلب - روافد الأنهار</title>
+    <meta name="description" content="صفحة إتمام الطلب وتأكيد تفاصيل التوصيل.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-light-blue">
+    <!-- ====== HEADER ====== -->
+    <header class="site-header site-header-solid" id="header">
+        <div class="container header-inner">
+            <div class="logo"><a href="index.html">روافد الأنهار</a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#collection">المنتجات</a></li>
+                    <li><a href="index.html#process">آلية الطلب</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="https://wa.me/966506939956" class="btn-outline" target="_blank" rel="noopener">استفسار</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== CHECKOUT ====== -->
+    <section class="checkout-section section-padding">
+        <div class="container">
+            <a href="javascript:history.back()" class="back-link">→ الرجوع للسلة</a>
+            <h1 class="checkout-title">إتمام الطلب</h1>
+
+            <div class="checkout-grid">
+
+                <!-- Right Form Column -->
+                <div class="checkout-form-col">
+                    <form id="checkoutForm" class="checkout-form-box">
+
+                        <div class="form-section">
+                            <h3>بيانات العميل</h3>
+                            <div class="form-group">
+                                <label>الاسم الكامل <span class="required">*</span></label>
+                                <input type="text" id="checkoutName" placeholder="الاسم الكريم" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الجوال <span class="required">*</span></label>
+                                <input type="tel" id="checkoutPhone" placeholder="05XXXXXXXX" dir="ltr" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>بيانات التوصيل</h3>
+                            <div class="form-group">
+                                <label>الحي / المدينة <span class="required">*</span></label>
+                                <select id="checkoutCity" required>
+                                    <option value="" disabled selected>اختر منطقة التوصيل</option>
+                                    <option value="الخرج">الخرج</option>
+                                    <option value="الدلم">الدلم</option>
+                                    <option value="الصحنة">الصحنة</option>
+                                    <option value="الهياثم">الهياثم</option>
+                                    <option value="مناطق مجاورة أخرى">مناطق مجاورة أخرى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>العنوان التفصيلي <span class="required">*</span></label>
+                                <textarea id="checkoutAddress" placeholder="اسم الشارع، رقم المبنى، أي معلم قريب..."
+                                    rows="2" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>وقت التوصيل المفضل</label>
+                                <div class="radio-group-flex">
+                                    <label class="radio-label">
+                                        <input type="radio" name="deliveryTime" value="صباحي (8 ص - 12 م)" checked>
+                                        <span>فترة صباحية</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="deliveryTime" value="مسائي (4 م - 10 م)">
+                                        <span>فترة مسائية</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>طريقة الدفع</h3>
+                            <div class="payment-methods-grid">
+                                <label class="payment-option-box">
+                                    <input type="radio" name="checkoutPayment" value="كاش عند الاستلام" checked>
+                                    <div class="payment-box-inner">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5">
+                                            <rect x="1" y="4" width="22" height="16" rx="2" />
+                                            <line x1="1" y1="10" x2="23" y2="10" />
+                                        </svg>
+                                        <span>كاش عند الاستلام</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option-box">
+                                    <input type="radio" name="checkoutPayment" value="مدى">
+                                    <div class="payment-box-inner">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5">
+                                            <rect x="1" y="4" width="22" height="16" rx="2" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                        <span>مدى (شبكة)</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option-box">
+                                    <input type="radio" name="checkoutPayment" value="Apple Pay">
+                                    <div class="payment-box-inner">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5">
+                                            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" />
+                                            <path d="M15 8c-1-1-3-1-3 1v2h3v2h-3v6h-2v-6H8v-2h2V9c0-3 3-3.5 5-2z" />
+                                        </svg>
+                                        <span>Apple Pay</span>
+                                    </div>
+                                </label>
+                                <label class="payment-option-box">
+                                    <input type="radio" name="checkoutPayment" value="تحويل بنكي">
+                                    <div class="payment-box-inner">
+                                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5">
+                                            <path d="M3 21h18" />
+                                            <path d="M3 10h18" />
+                                            <path d="M5 6l7-3 7 3" />
+                                        </svg>
+                                        <span>تحويل بنكي</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>ملاحظات إضافية</h3>
+                            <div class="form-group">
+                                <textarea id="checkoutNotes" placeholder="أي تعليمات أخرى للمندوب؟ (اختياري)"
+                                    rows="2"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Left Summary Column -->
+                <div class="checkout-summary-col">
+                    <div class="checkout-summary-box">
+                        <h3>ملخص الطلب</h3>
+
+                        <!-- Items rendered via JS -->
+                        <div id="checkoutItemsList" class="checkout-items-list">
+                            <!-- JS injects here -->
+                        </div>
+
+                        <div class="checkout-totals-row">
+                            <span>المجموع الفرعي</span>
+                            <span id="checkoutSubtotal">0 ر.س</span>
+                        </div>
+                        <div class="checkout-totals-row">
+                            <span>رسوم التوصيل</span>
+                            <span class="free-delivery">مجانًا</span>
+                        </div>
+
+                        <div class="checkout-grand-total">
+                            <span>الإجمالي الكلي</span>
+                            <span id="checkoutGrandTotal">0 ر.س</span>
+                        </div>
+
+                        <button type="submit" form="checkoutForm" class="btn-primary-whatsapp checkout-btn-submit">
+                            تأكيد الطلب عبر واتساب
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </button>
+                        <p class="checkout-assurance">سيتم نقلك للواتساب لتأكيد الطلب مباشرة. شكراً لاختيارك روافد
+                            الأنهار.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="site-footer" id="contact">
+        <div class="container footer-inner">
+            <p class="footer-brand">روافد الأنهار</p>
+            <p class="footer-tagline">في خدمتكم وتلبية احتياجاتكم المائية الموثوقة</p>
+            <div class="footer-bottom">
+                <span>&copy; 2026 روافد الأنهار. جميع الحقوق محفوظة</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
