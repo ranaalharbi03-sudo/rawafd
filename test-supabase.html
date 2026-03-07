@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
+  <meta charset="UTF-8">
     <title>Supabase Test</title>
 </head>
 
@@ -18,17 +19,17 @@
 
             try {
                 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                resultDiv.innerHTML = '⏳ Connecting to Supabase...';
+                resultDiv.innerHTML = 'â³ Connecting to Supabase...';
 
                 // Test 1: Check connection by reading orders table
                 const { data, error } = await sb.from('orders').select('*').limit(5);
 
                 if (error) {
-                    resultDiv.innerHTML = '❌ ERROR: ' + error.message + '<br><br>Code: ' + error.code + '<br>Details: ' + JSON.stringify(error);
+                    resultDiv.innerHTML = 'âŒ ERROR: ' + error.message + '<br><br>Code: ' + error.code + '<br>Details: ' + JSON.stringify(error);
                     resultDiv.style.color = 'red';
                 } else {
-                    resultDiv.innerHTML = '✅ Supabase is CONNECTED!<br><br>';
-                    resultDiv.innerHTML += '📊 Orders in table: ' + data.length + '<br><br>';
+                    resultDiv.innerHTML = 'âœ… Supabase is CONNECTED!<br><br>';
+                    resultDiv.innerHTML += 'ðŸ“Š Orders in table: ' + data.length + '<br><br>';
                     resultDiv.style.color = 'green';
 
                     if (data.length > 0) {
@@ -42,32 +43,32 @@
                             resultDiv.innerHTML += '</div>';
                         });
                     } else {
-                        resultDiv.innerHTML += '📭 No orders yet (table is empty).';
+                        resultDiv.innerHTML += 'ðŸ“­ No orders yet (table is empty).';
                     }
 
                     // Test 2: Try inserting a test order
-                    resultDiv.innerHTML += '<br><br>⏳ Testing INSERT...';
+                    resultDiv.innerHTML += '<br><br>â³ Testing INSERT...';
                     const { error: insertErr } = await sb.from('orders').insert([{
-                        customer_name: 'اختبار الاتصال',
+                        customer_name: 'Ø§Ø®ØªØ¨Ø§Ø± Ø§Ù„Ø§ØªØµØ§Ù„',
                         customer_phone: '0500000000',
-                        city: 'الخرج',
-                        address: 'عنوان تجريبي',
-                        delivery_time: 'صباحي',
-                        payment_method: 'كاش',
-                        notes: 'طلب تجريبي - يمكن حذفه',
+                        city: 'Ø§Ù„Ø®Ø±Ø¬',
+                        address: 'Ø¹Ù†ÙˆØ§Ù† ØªØ¬Ø±ÙŠØ¨ÙŠ',
+                        delivery_time: 'ØµØ¨Ø§Ø­ÙŠ',
+                        payment_method: 'ÙƒØ§Ø´',
+                        notes: 'Ø·Ù„Ø¨ ØªØ¬Ø±ÙŠØ¨ÙŠ - ÙŠÙ…ÙƒÙ† Ø­Ø°ÙÙ‡',
                         total_amount: 0,
                         items: []
                     }]);
 
                     if (insertErr) {
-                        resultDiv.innerHTML += '<br>❌ INSERT FAILED: ' + insertErr.message;
-                        resultDiv.innerHTML += '<br><br><b>Solution:</b> Go to Supabase Dashboard → Table Editor → orders → RLS → Disable RLS or Add INSERT policy';
+                        resultDiv.innerHTML += '<br>âŒ INSERT FAILED: ' + insertErr.message;
+                        resultDiv.innerHTML += '<br><br><b>Solution:</b> Go to Supabase Dashboard â†’ Table Editor â†’ orders â†’ RLS â†’ Disable RLS or Add INSERT policy';
                     } else {
-                        resultDiv.innerHTML += '<br>✅ INSERT WORKS! Order saved successfully!';
+                        resultDiv.innerHTML += '<br>âœ… INSERT WORKS! Order saved successfully!';
                     }
                 }
             } catch (e) {
-                resultDiv.innerHTML = '❌ FATAL ERROR: ' + e.message;
+                resultDiv.innerHTML = 'âŒ FATAL ERROR: ' + e.message;
                 resultDiv.style.color = 'red';
             }
         })();
