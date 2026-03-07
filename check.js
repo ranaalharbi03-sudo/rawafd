@@ -2,27 +2,17 @@
    SCRIPT — Luxury Water Brand Website
    ======================================== */
 
-let cart = [];
-try {
-  let cached = localStorage.getItem('waterCart');
-  if (cached) {
-    cart = JSON.parse(cached);
-    if (!Array.isArray(cart)) cart = [];
-  }
-} catch (e) {
-  console.error("Cart init error:", e);
-  cart = [];
-}
+var cart = JSON.parse(localStorage.getItem('waterCart')) || [];
 function saveCart() {
   localStorage.setItem('waterCart', JSON.stringify(cart));
 }
 
 // Supabase Configuration
-const SUPABASE_URL = 'https://dceieamoqgemqoerpuzq.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZWllYW1vcWdlbXFvZXJwdXpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDY3ODEsImV4cCI6MjA4ODMyMjc4MX0.OyzeztND2iCW-nkPVLW5HeXwQ183_2dt-7pT-7Hcx2k';
-const dbClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+var SUPABASE_URL = 'https://dceieamoqgemqoerpuzq.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZWllYW1vcWdlbXFvZXJwdXpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDY3ODEsImV4cCI6MjA4ODMyMjc4MX0.OyzeztND2iCW-nkPVLW5HeXwQ183_2dt-7pT-7Hcx2k';
+var supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
-const waterCatalog = {
+var waterCatalog = {
   bottles: {
     category: "مياه معبأة",
     "أروى": {
@@ -101,39 +91,39 @@ const waterCatalog = {
   }
 };
 
-function initProductDetailPage() {
-  const params = new URLSearchParams(window.location.search);
-  const type = params.get('type');
-  const rawBrand = params.get('brand');
-  const brandParam = rawBrand ? decodeURIComponent(rawBrand) : null;
+window.initProductDetailPage = function () {
+  var params = new URLSearchParams(window.location.search);
+  var type = params.get('type');
+  var rawBrand = params.get('brand');
+  var brandParam = rawBrand ? decodeURIComponent(rawBrand) : null;
 
   if (!type || !brandParam || !waterCatalog[type] || !waterCatalog[type][brandParam]) {
     console.error("Invalid product parameters or product not found.");
     return;
   }
 
-  const category = waterCatalog[type].category;
-  const productData = waterCatalog[type][brandParam];
-  let selectedSizeIndex = 0;
+  var category = waterCatalog[type].category;
+  var productData = waterCatalog[type][brandParam];
+  var selectedSizeIndex = 0;
 
   // Set Breadcrumbs
-  const bcCat = document.getElementById('bc-category');
+  var bcCat = document.getElementById('bc-category');
   if (bcCat) bcCat.innerText = category;
-  const bcBrand = document.getElementById('bc-brand');
+  var bcBrand = document.getElementById('bc-brand');
   if (bcBrand) bcBrand.innerText = productData.name;
 
   // Set Texts & Image
-  const dTitle = document.getElementById('detail-title');
+  var dTitle = document.getElementById('detail-title');
   if (dTitle) dTitle.innerText = "مياه " + productData.name;
-  const badge = document.getElementById('detail-brand-badge');
+  var badge = document.getElementById('detail-brand-badge');
   if (badge) badge.innerText = productData.name;
 
-  const dImg = document.getElementById('detail-img');
+  var dImg = document.getElementById('detail-img');
   if (dImg) dImg.src = productData.img;
 
   // Update Thumbs
-  for (let i = 1; i <= 4; i++) {
-    const thumb = document.getElementById(`thumb${i}`);
+  for (var i = 1; i <= 4; i++) {
+    var thumb = document.getElementById(`thumb${i}`);
     if (thumb) thumb.src = productData.img;
   }
 
@@ -146,12 +136,12 @@ function initProductDetailPage() {
   });
 
   // Populate Sizes Buttons
-  const sizeContainer = document.getElementById('size-buttons-container');
-  const priceEl = document.getElementById('detail-price');
+  var sizeContainer = document.getElementById('size-buttons-container');
+  var priceEl = document.getElementById('detail-price');
   if (sizeContainer && priceEl) {
     sizeContainer.innerHTML = "";
     productData.sizes.forEach((s, i) => {
-      const btn = document.createElement('button');
+      var btn = document.createElement('button');
       btn.className = `size-btn-item ${i === 0 ? 'selected' : ''}`;
       btn.innerText = s.size;
       btn.onclick = () => {
@@ -166,31 +156,31 @@ function initProductDetailPage() {
   }
 
   // Quantity controls
-  const qtyInput = document.getElementById('detailQty');
-  const btnMinus = document.getElementById('detailQtyMinus');
-  const btnPlus = document.getElementById('detailQtyPlus');
+  var qtyInput = document.getElementById('detailQty');
+  var btnMinus = document.getElementById('detailQtyMinus');
+  var btnPlus = document.getElementById('detailQtyPlus');
 
   if (btnMinus) {
     btnMinus.addEventListener('click', () => {
-      const val = parseInt(qtyInput.value) || 1;
+      var val = parseInt(qtyInput.value) || 1;
       if (val > 1) qtyInput.value = val - 1;
     });
   }
   if (btnPlus) {
     btnPlus.addEventListener('click', () => {
-      const val = parseInt(qtyInput.value) || 1;
+      var val = parseInt(qtyInput.value) || 1;
       if (val < 100) qtyInput.value = val + 1;
     });
   }
 
   // Add to Cart / Buy Now
-  const btnBuy = document.getElementById('btnBuyNow');
+  var btnBuy = document.getElementById('btnBuyNow');
   if (btnBuy) {
     btnBuy.addEventListener('click', () => {
-      const sizeObj = productData.sizes[selectedSizeIndex];
-      const qty = parseInt(qtyInput.value) || 1;
+      var sizeObj = productData.sizes[selectedSizeIndex];
+      var qty = parseInt(qtyInput.value) || 1;
 
-      const existingItem = cart.find(item => item.product === category && item.brand === productData.name && item.size === sizeObj.size);
+      var existingItem = cart.find(item => item.product === category && item.brand === productData.name && item.size === sizeObj.size);
 
       if (existingItem) {
         existingItem.qty += qty;
@@ -213,8 +203,8 @@ function initProductDetailPage() {
   // Accordions
   document.querySelectorAll('.accordion-header').forEach(btn => {
     btn.addEventListener('click', () => {
-      const content = btn.nextElementSibling;
-      const parent = btn.parentElement;
+      var content = btn.nextElementSibling;
+      var parent = btn.parentElement;
       if (parent.classList.contains('active')) {
         parent.classList.remove('active');
         content.style.display = 'none';
@@ -226,11 +216,11 @@ function initProductDetailPage() {
       }
     });
   });
-}
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Hero slow zoom on load ---------- */
-  const hero = document.querySelector('.hero');
+  var hero = document.querySelector('.hero');
   if (hero) {
     requestAnimationFrame(() => {
       hero.classList.add('loaded');
@@ -238,8 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Header scroll effect ---------- */
-  const header = document.getElementById('header');
-  const handleScroll = () => {
+  var header = document.getElementById('header');
+  var handleScroll = () => {
     if (header) {
       header.classList.toggle('scrolled', window.scrollY > 60);
     }
@@ -248,12 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScroll();
 
   /* ---------- Mobile menu toggle ---------- */
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelector('.main-nav ul');
+  var menuToggle = document.querySelector('.mobile-menu-toggle');
+  var navLinks = document.querySelector('.main-nav ul');
 
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('open');
+      var isOpen = navLinks.classList.toggle('open');
       menuToggle.setAttribute('aria-expanded', isOpen);
     });
 
@@ -268,32 +258,32 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Smooth scroll for anchor links ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
-      const targetId = anchor.getAttribute('href');
+      var targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
-      const target = document.querySelector(targetId);
+      var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        const headerHeight = header.offsetHeight;
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+        var headerHeight = header.offsetHeight;
+        var targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
       }
     });
   });
 
   /* ---------- FAQ Accordion ---------- */
-  const faqItems = document.querySelectorAll('.faq-item');
+  var faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach(item => {
-    const questionBtn = item.querySelector('.faq-question');
+    var questionBtn = item.querySelector('.faq-question');
 
     questionBtn.addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
+      var isActive = item.classList.contains('active');
 
       // Close all other FAQ items
       faqItems.forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
-          const otherBtn = otherItem.querySelector('.faq-question');
+          var otherBtn = otherItem.querySelector('.faq-question');
           otherBtn.setAttribute('aria-expanded', 'false');
         }
       });
@@ -305,10 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Scroll Reveal (IntersectionObserver) ---------- */
-  const revealElements = document.querySelectorAll('.reveal');
+  var revealElements = document.querySelectorAll('.reveal');
 
   if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
+    var revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -326,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Charity / Donation buttons ---------- */
-  const donationButtons = document.querySelectorAll('.donation-btn');
+  var donationButtons = document.querySelectorAll('.donation-btn');
 
   donationButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -334,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.toggle('selected');
 
       if (btn.classList.contains('selected')) {
-        const note = document.querySelector('.charity-note');
+        var note = document.querySelector('.charity-note');
         if (note) {
           note.textContent = `✓ تم اختيار: ${btn.textContent}. سيتم التنسيق معك عبر الواتساب.`;
           note.style.color = 'var(--clr-gold)';
@@ -345,11 +335,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Sticky CTA visibility ---------- */
-  const stickyCta = document.getElementById('sticky-cta');
-  const heroSection = document.getElementById('hero');
+  var stickyCta = document.getElementById('sticky-cta');
+  var heroSection = document.getElementById('hero');
 
   if (stickyCta && heroSection) {
-    const stickyObserver = new IntersectionObserver((entries) => {
+    var stickyObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) {
           stickyCta.style.transform = 'translateY(0)';
@@ -366,26 +356,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- Parallax on source image ---------- */
-  const sourceImage = document.querySelector('.source-image img');
+  var sourceImage = document.querySelector('.source-image img');
   if (sourceImage) {
     window.addEventListener('scroll', () => {
-      const rect = sourceImage.getBoundingClientRect();
+      var rect = sourceImage.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const speed = 0.15;
-        const offset = (window.innerHeight - rect.top) * speed;
+        var speed = 0.15;
+        var offset = (window.innerHeight - rect.top) * speed;
         sourceImage.style.transform = `translateY(${-offset}px) scale(1.1)`;
       }
     }, { passive: true });
   }
 
   /* ---------- Product showcase parallax ---------- */
-  const showcaseImage = document.querySelector('.product-showcase img');
+  var showcaseImage = document.querySelector('.product-showcase img');
   if (showcaseImage) {
     window.addEventListener('scroll', () => {
-      const rect = showcaseImage.getBoundingClientRect();
+      var rect = showcaseImage.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
-        const speed = 0.1;
-        const offset = (window.innerHeight - rect.top) * speed;
+        var speed = 0.1;
+        var offset = (window.innerHeight - rect.top) * speed;
         showcaseImage.style.transform = `translateY(${-offset}px)`;
       }
     }, { passive: true });
@@ -393,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Product Detail Modals ---------- */
   window.openProductModal = function (modalId) {
-    const modal = document.getElementById(modalId);
+    var modal = document.getElementById(modalId);
     if (modal) {
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -401,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.closeProductModal = function (modalId) {
-    const modal = document.getElementById(modalId);
+    var modal = document.getElementById(modalId);
     if (modal) {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -419,13 +409,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Order Modal ---------- */
-  const orderModal = document.getElementById('orderModal');
-  const modalClose = document.getElementById('modalClose');
-  const orderForm = document.getElementById('orderForm');
-  const orderProduct = document.getElementById('orderProduct');
-  const qtyInput = document.getElementById('orderQty');
-  const qtyMinus = document.getElementById('qtyMinus');
-  const qtyPlus = document.getElementById('qtyPlus');
+  var orderModal = document.getElementById('orderModal');
+  var modalClose = document.getElementById('modalClose');
+  var orderForm = document.getElementById('orderForm');
+  var orderProduct = document.getElementById('orderProduct');
+  var qtyInput = document.getElementById('orderQty');
+  var qtyMinus = document.getElementById('qtyMinus');
+  var qtyPlus = document.getElementById('qtyPlus');
 
   // Open modal
   window.openOrder = function (productName) {
@@ -433,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
       orderModal.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (orderProduct && productName) {
-        for (let opt of orderProduct.options) {
+        for (var opt of orderProduct.options) {
           if (opt.value === productName) {
             opt.selected = true;
             break;
@@ -461,13 +451,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Quantity controls
   if (qtyMinus && qtyInput) {
     qtyMinus.addEventListener('click', () => {
-      const val = parseInt(qtyInput.value) || 1;
+      var val = parseInt(qtyInput.value) || 1;
       if (val > 1) qtyInput.value = val - 1;
     });
   }
   if (qtyPlus && qtyInput) {
     qtyPlus.addEventListener('click', () => {
-      const val = parseInt(qtyInput.value) || 1;
+      var val = parseInt(qtyInput.value) || 1;
       if (val < 100) qtyInput.value = val + 1;
     });
   }
@@ -477,16 +467,16 @@ document.addEventListener('DOMContentLoaded', () => {
     orderForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const product = document.getElementById('orderProduct').value;
-      const brand = document.getElementById('orderBrand').value;
-      const qty = document.getElementById('orderQty').value;
-      const name = document.getElementById('orderName').value;
-      const phone = document.getElementById('orderPhone').value;
-      const address = document.getElementById('orderAddress').value;
-      const payment = document.querySelector('input[name="payment"]:checked').value;
-      const notes = document.getElementById('orderNotes').value;
+      var product = document.getElementById('orderProduct').value;
+      var brand = document.getElementById('orderBrand').value;
+      var qty = document.getElementById('orderQty').value;
+      var name = document.getElementById('orderName').value;
+      var phone = document.getElementById('orderPhone').value;
+      var address = document.getElementById('orderAddress').value;
+      var payment = document.querySelector('input[name="payment"]:checked').value;
+      var notes = document.getElementById('orderNotes').value;
 
-      let msg = `\u0637\u0644\u0628 \u062c\u062f\u064a\u062f \u0645\u0646 \u0631\u0648\u0627\u0641\u062f \u0627\u0644\u0623\u0646\u0647\u0627\u0631\n`;
+      var msg = `\u0637\u0644\u0628 \u062c\u062f\u064a\u062f \u0645\u0646 \u0631\u0648\u0627\u0641\u062f \u0627\u0644\u0623\u0646\u0647\u0627\u0631\n`;
       msg += `\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n`;
       msg += `\u0627\u0644\u0645\u0646\u062a\u062c: ${product}\n`;
       msg += `\u0627\u0644\u0645\u0627\u0631\u0643\u0629: ${brand}\n`;
@@ -498,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
       msg += `\u0637\u0631\u064a\u0642\u0629 \u0627\u0644\u062f\u0641\u0639: ${payment}\n`;
       if (notes) msg += `\u0645\u0644\u0627\u062d\u0638\u0627\u062a: ${notes}\n`;
 
-      const encoded = encodeURIComponent(msg);
+      var encoded = encodeURIComponent(msg);
       window.open(`https://wa.me/966506939956?text=${encoded}`, '_blank');
 
       closeModal();
@@ -509,23 +499,23 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Cart Logic ---------- */
 
   window.addSelectedToCart = function (btn) {
-    const card = btn.closest('.brand-card');
+    var card = btn.closest('.brand-card');
     if (!card) return;
 
-    const checkboxes = card.querySelectorAll('.product-checkbox:checked');
+    var checkboxes = card.querySelectorAll('.product-checkbox:checked');
     if (checkboxes.length === 0) {
       alert('يرجى اختيار منتج واحد على الأقل لتتم إضافته للسلة.');
       return;
     }
 
     checkboxes.forEach(cb => {
-      const product = cb.getAttribute('data-product');
-      const brand = cb.getAttribute('data-brand');
-      const size = cb.getAttribute('data-size');
-      const price = parseFloat(cb.getAttribute('data-price')) || 0;
+      var product = cb.getAttribute('data-product');
+      var brand = cb.getAttribute('data-brand');
+      var size = cb.getAttribute('data-size');
+      var price = parseFloat(cb.getAttribute('data-price')) || 0;
 
       // Check if item already in cart
-      const existingItem = cart.find(item => item.product === product && item.brand === brand && item.size === size);
+      var existingItem = cart.find(item => item.product === product && item.brand === brand && item.size === size);
 
       if (existingItem) {
         existingItem.qty += 1;
@@ -549,13 +539,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.updateCartUI = function () {
-    const badge = document.getElementById('cartBadge');
-    const floatingCart = document.getElementById('floatingCart');
-    const container = document.getElementById('cartItemsContainer');
-    const totalEl = document.getElementById('cartTotal');
+    var badge = document.getElementById('cartBadge');
+    var floatingCart = document.getElementById('floatingCart');
+    var container = document.getElementById('cartItemsContainer');
+    var totalEl = document.getElementById('cartTotal');
 
     // Update badge and visibility
-    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+    var totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
     if (badge) badge.innerText = totalQty;
     if (floatingCart) {
       floatingCart.style.display = totalQty > 0 ? 'flex' : 'none';
@@ -569,11 +559,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    let html = '';
-    let totalAmount = 0;
+    var html = '';
+    var totalAmount = 0;
 
     cart.forEach((item, index) => {
-      const itemTotal = item.price * item.qty;
+      var itemTotal = item.price * item.qty;
       totalAmount += itemTotal;
       html += `
         <div class="cart-item">
@@ -602,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.openCartModal = function () {
-    const modal = document.getElementById('cartModal');
+    var modal = document.getElementById('cartModal');
     if (modal) {
       updateCartUI();
       modal.classList.add('active');
@@ -611,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.closeCartModal = function () {
-    const modal = document.getElementById('cartModal');
+    var modal = document.getElementById('cartModal');
     if (modal) {
       modal.classList.remove('active');
       document.body.style.overflow = '';
@@ -624,13 +614,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ---------- Checkout Page Logic ---------- */
-  const checkoutItemsList = document.getElementById('checkoutItemsList');
+  var checkoutItemsList = document.getElementById('checkoutItemsList');
   if (checkoutItemsList) {
     renderCheckoutItems();
 
     function renderCheckoutItems() {
-      let html = '';
-      let subtotal = 0;
+      var html = '';
+      var subtotal = 0;
 
       if (cart.length === 0) {
         checkoutItemsList.innerHTML = '<p style="color: var(--color-gray); padding: 10px 0;">السلة فارغة. يرجى إضافة منتجات أولاً.</p>';
@@ -640,7 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       cart.forEach((item, index) => {
-        const itemTotal = item.price * item.qty;
+        var itemTotal = item.price * item.qty;
         subtotal += itemTotal;
         html += `
           <div class="checkout-item">
@@ -689,9 +679,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Handle Form Submit
-    const checkoutForm = document.getElementById('checkoutForm');
+    var checkoutForm = document.getElementById('checkoutForm');
     if (checkoutForm) {
-      checkoutForm.addEventListener('submit', async (e) => {
+      checkoutForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         if (cart.length === 0) {
@@ -700,28 +690,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Collect data
-        const name = document.getElementById('checkoutName').value;
-        const phone = document.getElementById('checkoutPhone').value;
-        const city = document.getElementById('checkoutCity').value;
-        const address = document.getElementById('checkoutAddress').value;
+        var name = document.getElementById('checkoutName').value;
+        var phone = document.getElementById('checkoutPhone').value;
+        var city = document.getElementById('checkoutCity').value;
+        var address = document.getElementById('checkoutAddress').value;
 
-        let deliveryTime = '';
-        const deliveryTimeEl = document.querySelector('input[name="deliveryTime"]:checked');
+        var deliveryTime = '';
+        var deliveryTimeEl = document.querySelector('input[name="deliveryTime"]:checked');
         if (deliveryTimeEl) deliveryTime = deliveryTimeEl.value;
 
-        let payment = '';
-        const paymentEl = document.querySelector('input[name="checkoutPayment"]:checked');
+        var payment = '';
+        var paymentEl = document.querySelector('input[name="checkoutPayment"]:checked');
         if (paymentEl) payment = paymentEl.value;
 
-        const notes = document.getElementById('checkoutNotes').value;
+        var notes = document.getElementById('checkoutNotes').value;
 
-        let totalAmount = 0;
+        var totalAmount = 0;
         cart.forEach((item) => {
           totalAmount += item.price * item.qty;
         });
 
-        const submitBtn = document.querySelector('.checkout-btn-submit');
-        let originalBtnText = "إتمام الطلب";
+        var submitBtn = document.querySelector('.checkout-btn-submit');
+        var originalBtnText = "إتمام الطلب";
         if (submitBtn) {
           originalBtnText = submitBtn.innerHTML;
           submitBtn.innerHTML = 'جاري تسجيل الطلب...';
@@ -729,7 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Save to Supabase DB
-        if (!dbClient) {
+        if (!supabase) {
           alert('حدث خطأ في الاتصال بالنظام. يرجى المحاولة مرة أخرى.');
           if (submitBtn) {
             submitBtn.innerHTML = originalBtnText;
@@ -739,7 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-          const { error } = await dbClient
+          var { error } = supabase
             .from('orders')
             .insert([
               {
@@ -757,7 +747,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (error) {
             console.error('Supabase insert error:', error);
-            const errorMsg = error.message || JSON.stringify(error);
+            var errorMsg = error.message || JSON.stringify(error);
             alert('خطأ مفصل من قاعدة البيانات:\n' + errorMsg);
             if (submitBtn) {
               submitBtn.innerHTML = originalBtnText;
@@ -787,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close cart modal on overlay click
-    const cartModalOverlay = document.getElementById('cartModal');
+    var cartModalOverlay = document.getElementById('cartModal');
     if (cartModalOverlay) {
       cartModalOverlay.addEventListener('click', (e) => {
         if (e.target === cartModalOverlay) closeCartModal();
@@ -797,3 +787,4 @@ document.addEventListener('DOMContentLoaded', () => {
   } // closes if (checkoutItemsList)
 
 }); // closes DOMContentLoaded
+

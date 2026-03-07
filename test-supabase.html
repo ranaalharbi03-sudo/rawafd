@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Supabase Test</title>
+</head>
+
+<body>
+    <h2>Testing Supabase Connection...</h2>
+    <div id="result" style="font-size:20px; margin-top:20px;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        (async function () {
+            const resultDiv = document.getElementById('result');
+
+            const SUPABASE_URL = 'https://dceieamoqgemqoerpuzq.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjZWllYW1vcWdlbXFvZXJwdXpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3NDY3ODEsImV4cCI6MjA4ODMyMjc4MX0.OyzeztND2iCW-nkPVLW5HeXwQ183_2dt-7pT-7Hcx2k';
+
+            try {
+                const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                resultDiv.innerHTML = '⏳ Connecting to Supabase...';
+
+                // Test 1: Check connection by reading orders table
+                const { data, error } = await sb.from('orders').select('*').limit(5);
+
+                if (error) {
+                    resultDiv.innerHTML = '❌ ERROR: ' + error.message + '<br><br>Code: ' + error.code + '<br>Details: ' + JSON.stringify(error);
+                    resultDiv.style.color = 'red';
+                } else {
+                    resultDiv.innerHTML = '✅ Supabase is CONNECTED!<br><br>';
+                    resultDiv.innerHTML += '📊 Orders in table: ' + data.length + '<br><br>';
+                    resultDiv.style.color = 'green';
+
+                    if (data.length > 0) {
+                        resultDiv.innerHTML += '<h3>Latest orders:</h3>';
+                        data.forEach((order, i) => {
+                            resultDiv.innerHTML += '<div style="background:#f0f0f0;padding:10px;margin:5px 0;border-radius:5px;">';
+                            resultDiv.innerHTML += '<b>Order ' + (i + 1) + ':</b> ' + (order.customer_name || 'N/A');
+                            resultDiv.innerHTML += ' | Phone: ' + (order.customer_phone || 'N/A');
+                            resultDiv.innerHTML += ' | Total: ' + (order.total_amount || 'N/A') + ' SAR';
+                            resultDiv.innerHTML += ' | Created: ' + (order.created_at || 'N/A');
+                            resultDiv.innerHTML += '</div>';
+                        });
+                    } else {
+                        resultDiv.innerHTML += '📭 No orders yet (table is empty).';
+                    }
+
+                    // Test 2: Try inserting a test order
+                    resultDiv.innerHTML += '<br><br>⏳ Testing INSERT...';
+                    const { error: insertErr } = await sb.from('orders').insert([{
+                        customer_name: 'اختبار الاتصال',
+                        customer_phone: '0500000000',
+                        city: 'الخرج',
+                        address: 'عنوان تجريبي',
+                        delivery_time: 'صباحي',
+                        payment_method: 'كاش',
+                        notes: 'طلب تجريبي - يمكن حذفه',
+                        total_amount: 0,
+                        items: []
+                    }]);
+
+                    if (insertErr) {
+                        resultDiv.innerHTML += '<br>❌ INSERT FAILED: ' + insertErr.message;
+                        resultDiv.innerHTML += '<br><br><b>Solution:</b> Go to Supabase Dashboard → Table Editor → orders → RLS → Disable RLS or Add INSERT policy';
+                    } else {
+                        resultDiv.innerHTML += '<br>✅ INSERT WORKS! Order saved successfully!';
+                    }
+                }
+            } catch (e) {
+                resultDiv.innerHTML = '❌ FATAL ERROR: ' + e.message;
+                resultDiv.style.color = 'red';
+            }
+        })();
+    </script>
+</body>
+
+</html>

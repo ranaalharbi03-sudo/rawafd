@@ -2,222 +2,234 @@
 <html lang="ar" dir="rtl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تفاصيل المنتج - روافد الأنهار</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script>
-        // Check URL parameters and redirect if none
-        const params = new URLSearchParams(window.location.search);
-        if (!params.has('type') || !params.has('brand')) {
-            window.location.href = 'index.html';
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل المنتج - روافد الأنهار</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Check URL parameters and redirect if none
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has('type') || !params.has('brand')) {
+      window.location.href = 'index.html';
+    }
+  </script>
 </head>
 
 <body class="product-detail-page">
-    <!-- ====== HEADER ====== -->
-    <header class="site-header" id="header"
-        style="position: sticky; top: 0; background: var(--color-white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;">
-        <div class="container header-inner" style="padding: 10px 0;">
-            <div class="logo" style="color: var(--color-primary);"><a href="index.html">روافد الأنهار 💧</a></div>
-            <div class="header-actions">
-                <a href="#" onclick="openCartModal(event)" class="cart-trigger"
-                    style="text-decoration: none; color: var(--color-dark); position: relative; padding: 5px;">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1"></circle>
-                        <circle cx="20" cy="21" r="1"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span class="cart-badge-header" id="headerCartBadge"
-                        style="position: absolute; top: 0; right: -5px; background: var(--color-primary); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold;">0</span>
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- ====== BREADCRUMB ====== -->
-    <div class="container breadcrumb">
-        <a href="index.html">الرئيسية</a> /
-        <a id="bc-category" href="#">المنتجات</a> /
-        <span id="bc-brand">...</span>
+  <!-- ====== HEADER ====== -->
+  <header class="site-header" id="header"
+    style="position: sticky; top: 0; background: var(--color-white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 1000;">
+    <div class="container header-inner" style="padding: 10px 0;">
+      <div class="logo" style="color: var(--color-primary);"><a href="index.html">روافد الأنهار 💧</a></div>
+      <div class="header-actions">
+        <a href="#" onclick="openCartModal(event)" class="cart-trigger"
+          style="text-decoration: none; color: var(--color-dark); position: relative; padding: 5px;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge-header" id="headerCartBadge"
+            style="position: absolute; top: 0; right: -5px; background: var(--color-primary); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold;">0</span>
+        </a>
+      </div>
     </div>
+  </header>
 
-    <!-- ====== PRODUCT DETAIL MAIN ====== -->
-    <section class="product-detail-section section-padding">
-        <div class="container product-detail-grid-new">
+  <!-- ====== BREADCRUMB ====== -->
+  <div class="container breadcrumb">
+    <a href="index.html">الرئيسية</a> /
+    <a id="bc-category" href="#">المنتجات</a> /
+    <span id="bc-brand">...</span>
+  </div>
 
-            <!-- Right: Product Visuals -->
-            <div class="product-visuals">
-                <div class="main-img-box">
-                    <img id="detail-img" src="" alt="صورة المنتج">
-                </div>
-                <div class="thumbnail-strip">
-                    <div class="thumb active"><img id="thumb1" src="" alt="حجم 1"></div>
-                    <div class="thumb"><img id="thumb2" src="" alt="حجم 2"></div>
-                    <div class="thumb"><img id="thumb3" src="" alt="حجم 3"></div>
-                    <div class="thumb"><img id="thumb4" src="" alt="حجم 4"></div>
-                </div>
-            </div>
+  <!-- ====== PRODUCT DETAIL MAIN ====== -->
+  <section class="product-detail-section section-padding">
+    <div class="container product-detail-grid-new">
 
-            <!-- Left: Product Details -->
-            <div class="product-info-box">
-                <span class="detail-brand-badge" id="detail-brand-badge">...</span>
-                <h1 id="detail-title" class="detail-title-new">...</h1>
-
-                <div class="detail-badge-row">
-                    <span class="benefit-badge">نقية ومعتمدة ✓</span>
-                </div>
-
-                <div class="detail-price-new">
-                    <span id="detail-price">...</span> <span class="price-suffix">للكرتون</span>
-                </div>
-
-                <div class="delivery-chip">
-                    توصيل سريع للخرج والمناطق المجاورة 🚚
-                </div>
-
-                <!-- Size Selector (Buttons) -->
-                <div class="size-selector-new">
-                    <label class="size-label-new">اختر الحجم <span class="required">*</span></label>
-                    <div class="size-buttons-container" id="size-buttons-container">
-                        <!-- Buttons injected via JS -->
-                    </div>
-                </div>
-
-                <!-- Quantity -->
-                <div class="qty-row-new">
-                    <label class="size-label-new">الكمية (كرتون)</label>
-                    <div class="qty-control detail-qty">
-                        <button type="button" class="qty-btn" id="detailQtyMinus">-</button>
-                        <input type="number" id="detailQty" value="1" min="1" max="100">
-                        <button type="button" class="qty-btn" id="detailQtyPlus">+</button>
-                    </div>
-                </div>
-
-                <!-- CTAs -->
-                <button class="btn-primary-whatsapp" id="btnBuyNow">
-                    اطلب الآن عبر واتساب 📦
-                </button>
-
-                <div class="secondary-link-container">
-                    <a href="packages.html" class="secondary-link">اشترك ووفّر →</a>
-                </div>
-
-            </div>
+      <!-- Right: Product Visuals -->
+      <div class="product-visuals">
+        <div class="main-img-box">
+          <img id="detail-img" src="" alt="صورة المنتج">
         </div>
-    </section>
-
-    <!-- ====== BELOW THE FOLD ====== -->
-
-    <!-- Why Choose Us -->
-    <section class="why-choose-us bg-light-blue section-padding">
-        <div class="container">
-            <h2 class="section-title text-center">لماذا تختارنا؟</h2>
-            <div class="features-grid">
-                <div class="feature-box">
-                    <div class="feature-icon">🚚</div>
-                    <h3>توصيل سريع</h3>
-                    <p>نصلك أينما كنت في الخرج والمناطق المجاورة بأسرع وقت.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon">💧</div>
-                    <h3>جودة مضمونة</h3>
-                    <p>مياه نقية معتمدة، نخزنها وفق أعلى معايير السلامة.</p>
-                </div>
-                <div class="feature-box">
-                    <div class="feature-icon">💰</div>
-                    <h3>أسعار منافسة</h3>
-                    <p>أفضل الأسعار لكميات الجملة والمفرد مع عروض مستمرة.</p>
-                </div>
-            </div>
+        <div class="thumbnail-strip">
+          <div class="thumb active"><img id="thumb1" src="" alt="حجم 1"></div>
+          <div class="thumb"><img id="thumb2" src="" alt="حجم 2"></div>
+          <div class="thumb"><img id="thumb3" src="" alt="حجم 3"></div>
+          <div class="thumb"><img id="thumb4" src="" alt="حجم 4"></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Output Brands -->
-    <section class="brands-row-section section-padding">
-        <div class="container">
-            <h2 class="section-title text-center">علامات تجارية متوفرة</h2>
-            <div class="brands-scroller">
-                <img src="assets/arwa.png" alt="أروى">
-                <img src="assets/nova.png" alt="نوفا">
-                <img src="assets/hayat.png" alt="حياة">
-                <img src="assets/berain.png" alt="بيرين">
-                <img src="assets/safa.png" alt="صفا">
-                <img src="assets/qassim.png" alt="القصيم">
-                <img src="assets/hana.png" alt="هنا">
-                <img src="assets/tania.png" alt="تانيا">
-            </div>
-        </div>
-    </section>
+      <!-- Left: Product Details -->
+      <div class="product-info-box">
+        <span class="detail-brand-badge" id="detail-brand-badge">...</span>
+        <h1 id="detail-title" class="detail-title-new">...</h1>
 
-    <!-- FAQ Accordion -->
-    <section class="faq-section section-padding bg-light-blue">
-        <div class="container">
-            <h2 class="section-title text-center">الأسئلة الشائعة</h2>
-            <div class="product-accordions faq-accordions">
-                <div class="accordion-item active">
-                    <button class="accordion-header">
-                        <span>هل التوصيل يشمل داخل الخرج فقط؟</span>
-                        <span class="icon">-</span>
-                    </button>
-                    <div class="accordion-content">
-                        <p>نعم، نغطي جميع أحياء الخرج والمراكز التابعة لها بتوصيل سريع ومباشر.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>هل يوجد حد أدنى للطلب؟</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content" style="display: none;">
-                        <p>لا يوجد حد أدنى لطلبات المنازل، ولكن يوجد حد أدنى لطلبات الجملة والمساجد للحصول على سعر
-                            التخفيض.</p>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <span>ما هي طرق الدفع المتاحة؟</span>
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content" style="display: none;">
-                        <p>نوفر خيارات دفع متعددة تناسبكم: كاش عند الاستلام، تحويل بنكي، أو الدفع الإلكتروني (مدى/آبل
-                            باي).</p>
-                    </div>
-                </div>
-            </div>
+        <div class="detail-badge-row">
+          <span class="benefit-badge">نقية ومعتمدة ✓</span>
         </div>
-    </section>
 
-    <!-- ====== CART MODAL ====== -->
-    <div class="cart-modal-overlay" id="cartModal">
-        <div class="cart-modal">
-            <button class="modal-close" onclick="closeCartModal()">&times;</button>
-            <h2>سلة الطلبات</h2>
-            <div id="cartItemsContainer">
-                <div class="empty-cart-msg">السلة فارغة</div>
-            </div>
-            <div class="cart-total-container">
-                <span>الإجمالي:</span>
-                <span class="cart-total" id="cartTotal">0 ر.س</span>
-            </div>
-            <button class="btn-submit-order" onclick="checkoutCart()" style="margin-top: 15px;">متابعة لإتمام
-                الطلب</button>
+        <div class="detail-price-new">
+          <span id="detail-price">...</span> <span class="price-suffix">للكرتون</span>
         </div>
+
+        <div class="delivery-chip">
+          توصيل سريع للخرج والمناطق المجاورة 🚚
+        </div>
+
+        <!-- Size Selector (Buttons) -->
+        <div class="size-selector-new">
+          <label class="size-label-new">اختر الحجم <span class="required">*</span></label>
+          <div class="size-buttons-container" id="size-buttons-container">
+            <!-- Buttons injected via JS -->
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="qty-row-new">
+          <label class="size-label-new">الكمية (كرتون)</label>
+          <div class="qty-control detail-qty">
+            <button type="button" class="qty-btn" id="detailQtyMinus">-</button>
+            <input type="number" id="detailQty" value="1" min="1" max="100">
+            <button type="button" class="qty-btn" id="detailQtyPlus">+</button>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <button class="btn-primary-whatsapp" id="btnBuyNow">
+          أضف للسلة واطلب الآن 📦
+        </button>
+
+        <div class="secondary-link-container">
+          <a href="packages.html" class="secondary-link">اشترك ووفّر →</a>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <!-- Need to load JS after HTML -->
-    <script src="script.js"></script>
-    <script>
-        // Init product detail page script
-        if (typeof initProductDetailPage === 'function') {
-            initProductDetailPage();
-        }
-    </script>
+  <!-- ====== BELOW THE FOLD ====== -->
+
+  <!-- Why Choose Us -->
+  <section class="why-choose-us bg-light-blue section-padding">
+    <div class="container">
+      <h2 class="section-title text-center">لماذا تختارنا؟</h2>
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">🚚</div>
+          <h3>توصيل سريع</h3>
+          <p>نصلك أينما كنت في الخرج والمناطق المجاورة بأسرع وقت.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">💧</div>
+          <h3>جودة مضمونة</h3>
+          <p>مياه نقية معتمدة، نخزنها وفق أعلى معايير السلامة.</p>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">💰</div>
+          <h3>أسعار منافسة</h3>
+          <p>أفضل الأسعار لكميات الجملة والمفرد مع عروض مستمرة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Output Brands -->
+  <section class="brands-row-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center">علامات تجارية متوفرة</h2>
+      <div class="brands-scroller">
+        <img src="assets/arwa.png" alt="أروى">
+        <img src="assets/nova.png" alt="نوفا">
+        <img src="assets/hayat.png" alt="حياة">
+        <img src="assets/berain.png" alt="بيرين">
+        <img src="assets/safa.png" alt="صفا">
+        <img src="assets/qassim.png" alt="القصيم">
+        <img src="assets/hana.png" alt="هنا">
+        <img src="assets/tania.png" alt="تانيا">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="faq-section section-padding bg-light-blue">
+    <div class="container">
+      <h2 class="section-title text-center">الأسئلة الشائعة</h2>
+      <div class="product-accordions faq-accordions">
+        <div class="accordion-item active">
+          <button class="accordion-header">
+            <span>هل التوصيل يشمل داخل الخرج فقط؟</span>
+            <span class="icon">-</span>
+          </button>
+          <div class="accordion-content">
+            <p>نعم، نغطي جميع أحياء الخرج والمراكز التابعة لها بتوصيل سريع ومباشر.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>هل يوجد حد أدنى للطلب؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="accordion-content" style="display: none;">
+            <p>لا يوجد حد أدنى لطلبات المنازل، ولكن يوجد حد أدنى لطلبات الجملة والمساجد للحصول على سعر
+              التخفيض.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            <span>ما هي طرق الدفع المتاحة؟</span>
+            <span class="icon">+</span>
+          </button>
+          <div class="accordion-content" style="display: none;">
+            <p>نوفر خيارات دفع متعددة تناسبكم: كاش عند الاستلام، تحويل بنكي، أو الدفع الإلكتروني (مدى/آبل
+              باي).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CART MODAL ====== -->
+  <div class="cart-modal-overlay" id="cartModal">
+    <div class="cart-modal">
+      <button class="modal-close" onclick="closeCartModal()">&times;</button>
+      <h2>سلة الطلبات</h2>
+      <div id="cartItemsContainer">
+        <div class="empty-cart-msg">السلة فارغة</div>
+      </div>
+      <div class="cart-total-container">
+        <span>الإجمالي:</span>
+        <span class="cart-total" id="cartTotal">0 ر.س</span>
+      </div>
+      <button class="btn-submit-order" onclick="checkoutCart()" style="margin-top: 15px;">متابعة لإتمام
+        الطلب</button>
+    </div>
+  </div>
+
+  <!-- Supabase Library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js?v=3"></script>
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/966506939956" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    title="للاستفسارات والشكاوي">
+    <svg viewBox="0 0 24 24" width="35" height="35" fill="currentColor">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+    </svg>
+  </a>
+
+  <script>
+    // Init product detail page script
+    if (typeof initProductDetailPage === 'function') {
+      initProductDetailPage();
+    } else {
+      alert("Error: initProductDetailPage function is not defined in script.js");
+    }
+  </script>
 </body>
 
 </html>
