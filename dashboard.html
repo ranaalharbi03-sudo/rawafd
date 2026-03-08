@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة - روافد الأنهار</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body class="dashboard-body">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen" class="login-wrapper">
+        <div class="login-box">
+            <div class="logo">روافد الأنهار</div>
+            <h2>تسجيل الدخول للإدارة</h2>
+            <p>يرجى إدخال بيانات المسؤول للوصول للوحة التحكم.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="adminEmail" required dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="adminPassword" required dir="ltr">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;"
+                    id="loginBtn">دخول</button>
+                <div id="loginError" class="error-text"></div>
+            </form>
+            <a href="index.html" class="back-link" style="display: block; text-align: center; margin-top: 20px;">العودة
+                للرئيسية &rarr;</a>
+        </div>
+    </div>
+
+    <!-- DASHBOARD WRAPPER (Hidden until authenticated) -->
+    <div id="dashboardWrapper" class="dashboard-wrapper" style="display: none;">
+        <!-- SIDEBAR -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <div class="logo">روافد <br>الأنهار</div>
+                <span class="badge">لوحة التحكم</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg> نظرة عامة</a></li>
+                    <li><a href="#" onclick="alert('سيتم إضافة هذه الميزة قريباً')"><svg viewBox="0 0 24 24" width="20"
+                                height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg> المنتجات</a></li>
+                    <li><a href="#" onclick="alert('سيتم إضافة هذه الميزة قريباً')"><svg viewBox="0 0 24 24" width="20"
+                                height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg> العملاء</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logoutBtn" class="btn-outline logout-btn">تسجيل الخروج</button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <h1>إدارة الطلبات</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="window.fetchOrders()"><svg viewBox="0 0 24 24" width="18"
+                            height="18" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:5px;">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg> تحديث البيانات</button>
+                </div>
+            </header>
+
+            <!-- KPIs -->
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-icon blue"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg></div>
+                    <div class="kpi-content">
+                        <h3>إجمالي الطلبات</h3>
+                        <span class="kpi-value" id="kpiTotalOrders">0</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon green"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg></div>
+                    <div class="kpi-content">
+                        <h3>إجمالي الإيرادات</h3>
+                        <span class="kpi-value"><span id="kpiTotalRevenue">0</span> <small>ر.س</small></span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon gold"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg></div>
+                    <div class="kpi-content">
+                        <h3>طلبات اليوم</h3>
+                        <span class="kpi-value" id="kpiTodayOrders">0</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon red"><svg viewBox="0 0 24 24" width="24" height="24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg></div>
+                    <div class="kpi-content">
+                        <h3>بانتظار التنفيذ</h3>
+                        <span class="kpi-value" id="kpiPendingOrders">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ORDERS TABLE -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>أحدث الطلبات</h2>
+                    <div class="table-filters">
+                        <select id="statusFilter" aria-label="تصفية حسب الحالة">
+                            <option value="all">جميع الحالات</option>
+                            <option value="جديد">جديد</option>
+                            <option value="جاري التجهيز">جاري التجهيز</option>
+                            <option value="تم التوصيل">تم التوصيل</option>
+                            <option value="ملغي">ملغي</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>التاريخ</th>
+                                <th>العميل</th>
+                                <th>قيمة الطلب</th>
+                                <th>تفاصيل المنتجات</th>
+                                <th>الحالة</th>
+                                <th>إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <tr>
+                                <td colspan="7" class="loading-state">جاري تحميل البيانات...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="dashboard-modal">
+        <div class="dashboard-modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <h2>تفاصيل الطلب <span id="modalOrderId" class="text-gold"></span></h2>
+
+            <div class="modal-grid">
+                <div class="modal-card">
+                    <h3>معلومات العميل</h3>
+                    <p><strong>الاسم:</strong> <span id="modalCustomerName"></span></p>
+                    <p><strong>رقم الجوال:</strong> <span id="modalCustomerPhone" dir="ltr"></span></p>
+                    <p><strong>المدينة:</strong> <span id="modalCity"></span></p>
+                    <p><strong>العنوان المفصل:</strong> <span id="modalAddress"></span></p>
+                </div>
+
+                <div class="modal-card">
+                    <h3>تفاصيل التوصيل والدفع</h3>
+                    <p><strong>وقت التوصيل:</strong> <span id="modalDeliveryTime"></span></p>
+                    <p><strong>طريقة الدفع:</strong> <span id="modalPayment"></span></p>
+                    <p><strong>ملاحظات العميل:</strong> <span id="modalNotes"></span></p>
+                    <p><strong>الإجمالي:</strong> <span id="modalTotal" class="text-gold"
+                            style="font-weight: bold; font-size: 1.1rem;"></span> ر.س</p>
+                </div>
+            </div>
+
+            <div class="modal-card full-width">
+                <h3>المنتجات المطلوبة</h3>
+                <ul id="modalItemsList" class="modal-items-list">
+                    <!-- Items injected here -->
+                </ul>
+            </div>
+
+            <div class="modal-actions">
+                <select id="modalStatusSelect" class="status-select">
+                    <option value="جديد">جديد</option>
+                    <option value="جاري التجهيز">جاري التجهيز</option>
+                    <option value="تم التوصيل">تم التوصيل</option>
+                    <option value="ملغي">ملغي</option>
+                </select>
+                <button class="btn-primary" id="btnUpdateStatus">تحديث الحالة</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Supabase Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
