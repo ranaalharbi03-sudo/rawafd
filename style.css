@@ -3143,3 +3143,152 @@ a.collection-item:hover {
   background-color: #20b858;
   color: #fff;
 }
+
+/* ========================================
+   PRODUCT CARD IMAGES FIX
+   ======================================== */
+.brand-card.clean-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--dur) var(--ease);
+  position: relative;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 119, 204, 0.15);
+  border-color: var(--clr-gold);
+}
+
+.brand-card-img {
+  width: 100%;
+  height: 200px;
+  /* Fixed height to keep cards uniform */
+  background-color: var(--clr-cream-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-card-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  /* Prevents stretching */
+  transition: transform var(--dur) var(--ease);
+}
+
+.brand-card:hover .brand-card-img img {
+  transform: scale(1.05);
+  /* Very subtle premium zoom */
+}
+
+.brand-card-body {
+  padding: 1.25rem;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand-title {
+  font-family: var(--ff-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-bottom: 0.5rem;
+}
+
+.brand-desc {
+  font-size: 0.9rem;
+  color: var(--clr-text-light);
+  margin-bottom: 1rem;
+}
+
+.brand-price-start {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-weight: 700;
+  color: var(--clr-gold);
+  border: 1px solid var(--clr-border);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 119, 204, 0.03);
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(255, 71, 87, 0.3);
+}
+
+/* ========================================
+   PRODUCT DETAIL PAGE IMAGES FIX
+   ======================================== */
+.main-img-box {
+  background-color: var(--clr-cream-dark);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--clr-border-light);
+  overflow: hidden;
+}
+
+.main-img-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.1));
+}
+
+.thumbnail-strip {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.thumb {
+  width: 80px;
+  height: 80px;
+  background: var(--clr-cream-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--dur) var(--ease);
+}
+
+.thumb.active,
+.thumb:hover {
+  border-color: var(--clr-gold);
+  background: var(--clr-white);
+}
+
+.thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
