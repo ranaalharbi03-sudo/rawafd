@@ -30,10 +30,10 @@ const waterCatalog = {
       desc: "مياه شرب نقية منعشة، معبأة بأعلى معايير الجودة لتمنحك الترطيب المثالي الذي يحتاجه جسمك في كل يوم. خيارك الأمثل لصفاء الذهن وحيوية الجسد.",
       img: "assets/arwa.png",
       sizes: [
-        { size: "200 مل (كرتون)", price: 15 },
-        { size: "330 مل (كرتون)", price: 18 },
-        { size: "600 مل (كرتون)", price: 20 },
-        { size: "1.5 لتر (كرتون)", price: 22 }
+        { size: "200 مل (كرتون)", price: 15, img: "assets/arwa_200.png" },
+        { size: "330 مل (كرتون)", price: 18, img: "assets/arwa_330.png" },
+        { size: "600 مل (كرتون)", price: 20, img: "assets/arwa_600.png" },
+        { size: "1.5 لتر (كرتون)", price: 22, img: "assets/arwa_1500.png" }
       ]
     },
     "نوفا": {
@@ -131,38 +131,73 @@ function initProductDetailPage() {
   const dImg = document.getElementById('detail-img');
   if (dImg) dImg.src = productData.img;
 
-  // Update Thumbs
-  for (let i = 1; i <= 4; i++) {
-    const thumb = document.getElementById(`thumb${i}`);
-    if (thumb) thumb.src = productData.img;
-  }
-
-  // Thumbnail click logic
-  document.querySelectorAll('.thumb').forEach(thumbBox => {
-    thumbBox.addEventListener('click', () => {
-      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-      thumbBox.classList.add('active');
-    });
-  });
-
-  // Populate Sizes Buttons
+  // Populate Sizes Buttons and Thumbnails
   const sizeContainer = document.getElementById('size-buttons-container');
   const priceEl = document.getElementById('detail-price');
+  const thumbStrip = document.querySelector('.thumbnail-strip');
+
+  if (thumbStrip) thumbStrip.innerHTML = ""; // Clear existing static thumbs
+
   if (sizeContainer && priceEl) {
     sizeContainer.innerHTML = "";
     productData.sizes.forEach((s, i) => {
+      // 1. Create Size Button
       const btn = document.createElement('button');
       btn.className = `size-btn-item ${i === 0 ? 'selected' : ''}`;
       btn.innerText = s.size;
+
+      // 2. Create corresponding Thumbnail (if thumbnail strip exists)
+      let tDiv = null;
+      if (thumbStrip) {
+        tDiv = document.createElement('div');
+        tDiv.className = `thumb ${i === 0 ? 'active' : ''}`;
+
+        const tImg = document.createElement('img');
+        tImg.src = s.img || productData.img;
+        tImg.onerror = function () {
+          this.onerror = null;
+          this.src = productData.img; // Fallback to default
+        };
+        tDiv.appendChild(tImg);
+
+        // Thumbnail click triggers the size button click
+        tDiv.addEventListener('click', () => btn.click());
+        thumbStrip.appendChild(tDiv);
+      }
+
+      // 3. Button Click Logic
       btn.onclick = () => {
+        // Update selected size visual
         document.querySelectorAll('.size-btn-item').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         selectedSizeIndex = i;
         priceEl.innerText = productData.sizes[selectedSizeIndex].price;
+
+        // Update main image
+        if (s.img) {
+          if (dImg) {
+            dImg.src = s.img;
+            dImg.onerror = function () {
+              this.onerror = null;
+              this.src = productData.img; // Fallback to default
+            };
+          }
+        } else {
+          if (dImg) dImg.src = productData.img;
+        }
+
+        // Update active thumbnail
+        if (thumbStrip) {
+          document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+          if (tDiv) tDiv.classList.add('active');
+        }
       };
       sizeContainer.appendChild(btn);
     });
-    priceEl.innerText = productData.sizes[0].price;
+
+    // Set initial configuration
+    const firstBtn = sizeContainer.querySelector('.size-btn-item');
+    if (firstBtn) firstBtn.click();
   }
 
   // Quantity controls
