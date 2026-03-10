@@ -41,10 +41,10 @@ const waterCatalog = {
       desc: "مستخرجة من أنقى الآبار الجوفية، مياه نوفا تقدم لك توازناً مثالياً في المعادن لتمنحك طعماً طبيعياً منعشاً يروي عطشك ويجدد طاقتك.",
       img: "assets/nova.png",
       sizes: [
-        { size: "200 مل (كرتون)", price: 12 },
-        { size: "330 مل (كرتون)", price: 15 },
-        { size: "600 مل (كرتون)", price: 17 },
-        { size: "1.5 لتر (كرتون)", price: 20 }
+        { size: "200 مل (كرتون)", price: 12, img: "assets/nova_200.png" },
+        { size: "330 مل (كرتون)", price: 15, img: "assets/nova_330.png" },
+        { size: "600 مل (كرتون)", price: 17, img: "assets/nova_600.png" },
+        { size: "1.5 لتر (كرتون)", price: 20, img: "assets/nova_1500.png" }
       ]
     },
     "بيرين": {
@@ -52,10 +52,10 @@ const waterCatalog = {
       desc: "مياه بيرين تمنحك تجربة ارتواء استثنائية، فهي مصممة خصيصاً لتواكب نمط حياتك الصحي بتركيبة غنية ومتوازنة وخفيفة على المعدة.",
       img: "assets/berain.png",
       sizes: [
-        { size: "200 مل (كرتون)", price: 13 },
-        { size: "330 مل (كرتون)", price: 15 },
-        { size: "600 مل (كرتون)", price: 18 },
-        { size: "1.5 لتر (كرتون)", price: 20 }
+        { size: "200 مل (كرتون)", price: 13, img: "assets/berain_200.png" },
+        { size: "330 مل (كرتون)", price: 15, img: "assets/berain_330.png" },
+        { size: "600 مل (كرتون)", price: 18, img: "assets/berain_600.png" },
+        { size: "1.5 لتر (كرتون)", price: 20, img: "assets/berain_1500.png" }
       ]
     },
     "القصيم": {
@@ -63,27 +63,27 @@ const waterCatalog = {
       desc: "من قلب الطبيعة إلى مائدتك، مياه القصيم تقدم لك الطعم الأصيل والمنعش بفضل تركيبتها الطبيعية المنخفضة بالصوديوم للحفاظ على صحتك طوال اليوم.",
       img: "assets/qassim.png",
       sizes: [
-        { size: "200 مل (كرتون)", price: 10 },
-        { size: "330 مل (كرتون)", price: 13 },
-        { size: "600 مل (كرتون)", price: 15 },
-        { size: "1.5 لتر (كرتون)", price: 18 }
+        { size: "200 مل (كرتون)", price: 10, img: "assets/qassim_200.png" },
+        { size: "330 مل (كرتون)", price: 13, img: "assets/qassim_330.png" },
+        { size: "600 مل (كرتون)", price: 15, img: "assets/qassim_600.png" },
+        { size: "1.5 لتر (كرتون)", price: 18, img: "assets/qassim_1500.png" }
       ]
     },
     "حياة": {
       name: "حياة", desc: "نقاء متوازن لك ولعائلتك.", img: "assets/hayat.png",
-      sizes: [{ size: "200 مل (كرتون)", price: 14 }, { size: "330 مل (كرتون)", price: 16 }, { size: "600 مل (كرتون)", price: 19 }, { size: "1.5 لتر (كرتون)", price: 21 }]
+      sizes: [{ size: "200 مل (كرتون)", price: 14, img: "assets/hayat_200.png" }, { size: "330 مل (كرتون)", price: 16, img: "assets/hayat_330.png" }, { size: "600 مل (كرتون)", price: 19, img: "assets/hayat_600.png" }, { size: "1.5 لتر (كرتون)", price: 21, img: "assets/hayat_1500.png" }]
     },
     "صفا": {
       name: "صفا", desc: "خيارك اليومي لمياه عذبة ونقية.", img: "assets/safa.png",
-      sizes: [{ size: "200 مل (كرتون)", price: 11 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 16 }, { size: "1.5 لتر (كرتون)", price: 19 }]
+      sizes: [{ size: "200 مل (كرتون)", price: 11, img: "assets/safa_200.png" }, { size: "330 مل (كرتون)", price: 14, img: "assets/safa_330.png" }, { size: "600 مل (كرتون)", price: 16, img: "assets/safa_600.png" }, { size: "1.5 لتر (كرتون)", price: 19, img: "assets/safa_1500.png" }]
     },
     "هنا": {
       name: "هنا", desc: "مياه طبيعية تروي العطش في أي وقت.", img: "assets/hana.png",
-      sizes: [{ size: "200 مل (كرتون)", price: 11 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 16 }, { size: "1.5 لتر (كرتون)", price: 19 }]
+      sizes: [{ size: "200 مل (كرتون)", price: 11, img: "assets/hana_200.png" }, { size: "330 مل (كرتون)", price: 14, img: "assets/hana_330.png" }, { size: "600 مل (كرتون)", price: 16, img: "assets/hana_600.png" }, { size: "1.5 لتر (كرتون)", price: 19, img: "assets/hana_1500.png" }]
     },
     "تانيا": {
       name: "تانيا", desc: "جودة متناهية لتوازن لا يُضاهى.", img: "assets/tania.png",
-      sizes: [{ size: "200 مل (كرتون)", price: 12 }, { size: "330 مل (كرتون)", price: 14 }, { size: "600 مل (كرتون)", price: 17 }, { size: "1.5 لتر (كرتون)", price: 20 }]
+      sizes: [{ size: "200 مل (كرتون)", price: 12, img: "assets/tania_200.png" }, { size: "330 مل (كرتون)", price: 14, img: "assets/tania_330.png" }, { size: "600 مل (كرتون)", price: 17, img: "assets/tania_600.png" }, { size: "1.5 لتر (كرتون)", price: 20, img: "assets/tania_1500.png" }]
     }
   },
   jugs: {
